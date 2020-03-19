@@ -2,6 +2,7 @@ function countUniqueValues(arr){
     
     /*
     hey, look.
+    But wait, there's more.
 
      Implement a function called countUniqueValues,
     which accepts a sorted array, and counts the
