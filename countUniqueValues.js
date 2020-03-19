@@ -1,15 +1,16 @@
 function countUniqueValues(arr){
     
-    /*
-    hey, look.
-    But wait, there's more.
-
-     Implement a function called countUniqueValues,
+    /*Implement a function called countUniqueValues,
     which accepts a sorted array, and counts the
     unique values in the array.  There can be
     negative values in the array but it will always be sorted.
     */
-   
+
+   //initialize two pointers
+   //use a while loop that goes until the second pointer gets to the end of the array
+   //if the values of the array at the two pointers are the same increment the second pointer up
+   // else, if the values are not the same move the first pointer up one and change the arr value at that position to that of the second pointer
+   //when the while loop has ended get the location of the first pointer and add one to it.  This is the number of values we wanted   
 
 }//end countUniqueValues()
 
