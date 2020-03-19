@@ -7,10 +7,15 @@ function countUniqueValues(arr){
     negative values in the array but it will always be sorted.
     */
 
+
    //initialize two pointers
    let i = 0;
    let j = 1;
    let len = arr.length;
+
+   if(len == 0){
+       return 0;
+   }
 
    //use a while loop that goes until the second pointer gets to the end of the array
    while(j < len){
@@ -25,11 +30,11 @@ function countUniqueValues(arr){
    }//end while
 
         //when the while loop has ended get the location of the first pointer and add one to it.  This is the number of values we wanted
-    return i;
+    return i + 1;
 
 }//end countUniqueValues()
 
 countUniqueValues([1, 1, 1, 1, 1, 2]);//2
-//countUniqueValues([1, 2, 3, 4, 4, 4, 7, 7, 12, 12, 13]);//7
-//countUniqueValues([]);//0
-//countUniqueValues([-2, -1, -1, 0, 1]);//4
+countUniqueValues([1, 2, 3, 4, 4, 4, 7, 7, 12, 12, 13]);//7
+countUniqueValues([]);//0
+countUniqueValues([-2, -1, -1, 0, 1]);//4
