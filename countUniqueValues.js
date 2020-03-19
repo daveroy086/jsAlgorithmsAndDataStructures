@@ -17,7 +17,7 @@ function countUniqueValues(arr){
         }
    }//end while
 
-    return i + 1;
+   return i + 1;
 
 }//end countUniqueValues()
 
