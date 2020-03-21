@@ -1,8 +1,6 @@
 function sameFrequency(num1, num2){
-    
-}//end sameFrequency()
 
-/* This function is a frequency counter for determining anagrams of a string.
+    /* This function is a frequency counter for determining anagrams of a string.
   It should make a good template for a sameFrequency(digits)
   
   function validAnagram(stringOne, stringTwo){
@@ -53,3 +51,11 @@ function sameFrequency(num1, num2){
     return true;
 
 }//end validAnagrams() */
+
+    
+}//end sameFrequency()
+
+console.log(sameFrequency(182, 281)); //true
+console.log(sameFrequency(34, 14));  //false
+console.log(sameFrequency(3589578, 5879358));  //true
+console.log(sameFrequency(22, 222)); //false
