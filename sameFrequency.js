@@ -4,7 +4,6 @@ function sameFrequency(num1, num2){
     let len2 = Math.max(Math.floor(Math.log10(Math.abs(num2))), 0) + 1;
 
     if(len1 != len2){
-        //console.log("false");
         return false;
     }
 
@@ -19,7 +18,6 @@ function sameFrequency(num1, num2){
             objectOne[string1[i]] = 1;
         }
     }//end for i
-    console.log("objectOne is ", objectOne);
 
     var objectTwo = {};
     let sTwoLength = len2;
@@ -31,32 +29,20 @@ function sameFrequency(num1, num2){
             objectTwo[string2[j]] = 1;
         }
     }//end for j
-    console.log("objectTwo is ", objectTwo);
-/*
+
     // compare them
     var keysOne = Object.keys(objectOne);
-    console.log(keysOne);
-    var keysOneLength = keysOne.length;
+    let keysOneLength = keysOne.length;
     for(k = 0; k < keysOneLength; k++){
-        //console.log(" keysOne[k] is ", keysOne[k],
-                    ", objectOne is ", objectOne, 
-                    ", objectOne[k] is ", objectOne[keysOne[k]], 
-                    " and onjectTwo[k] is ", objectTwo[keysOne[k]]);
-
         if(!(objectTwo.hasOwnProperty(keysOne[k]) && objectOne[keysOne[k]] == objectTwo[keysOne[k]])){
-      //      console.log('false');
             return false;
         }
     }
-    //console.log('true');
     return true;
-
-}//end validAnagrams() */
-
     
 }//end sameFrequency()
 
 console.log(sameFrequency(182, 281)); //true
-//console.log(sameFrequency(34, 14));  //false
-//console.log(sameFrequency(3589578, 5879358));  //true
-//console.log(sameFrequency(22, 222)); //false
+console.log(sameFrequency(34, 14));  //false
+console.log(sameFrequency(3589578, 5879358));  //true
+console.log(sameFrequency(22, 222)); //false
