@@ -1,37 +1,38 @@
 function sameFrequency(num1, num2){
 
-    /* This function is a frequency counter for determining anagrams of a string.
-  It should make a good template for a sameFrequency(digits)
-  
-  function validAnagram(stringOne, stringTwo){
+    let len1 = Math.max(Math.floor(Math.log10(Math.abs(num1))), 0) + 1;
+    let len2 = Math.max(Math.floor(Math.log10(Math.abs(num2))), 0) + 1;
 
-    //give the parameters names
-    if(stringOne.length != stringTwo.length){
+    if(len1 != len2){
         //console.log("false");
         return false;
     }
 
     //create the objects for each string
     var objectOne = {};
-    let sOneLength = stringOne.length;
+    let sOneLength = len1;
+    let string1 = num1.toString();
     for (let i = 0; i < sOneLength; i ++){
-        if (objectOne.hasOwnProperty(stringOne[i])){
-            objectOne[stringOne[i]]++;
+        if (objectOne.hasOwnProperty(string1[i])){
+            objectOne[string1[i]]++;
         }else{
-            objectOne[stringOne[i]] = 1;
+            objectOne[string1[i]] = 1;
         }
     }//end for i
+    console.log("objectOne is ", objectOne);
 
     var objectTwo = {};
-    let sTwoLength = stringTwo.length;
+    let sTwoLength = len2;
+    let string2 = num2.toString();
     for (let j = 0; j < sTwoLength; j ++){
-        if (objectTwo.hasOwnProperty(stringTwo[j])){
-            objectTwo[stringTwo[j]]++;
+        if (objectTwo.hasOwnProperty(string2[j])){
+            objectTwo[string2[j]]++;
         }else{
-            objectTwo[stringTwo[j]] = 1;
+            objectTwo[string2[j]] = 1;
         }
     }//end for j
-
+    console.log("objectTwo is ", objectTwo);
+/*
     // compare them
     var keysOne = Object.keys(objectOne);
     console.log(keysOne);
@@ -56,6 +57,6 @@ function sameFrequency(num1, num2){
 }//end sameFrequency()
 
 console.log(sameFrequency(182, 281)); //true
-console.log(sameFrequency(34, 14));  //false
-console.log(sameFrequency(3589578, 5879358));  //true
-console.log(sameFrequency(22, 222)); //false
+//console.log(sameFrequency(34, 14));  //false
+//console.log(sameFrequency(3589578, 5879358));  //true
+//console.log(sameFrequency(22, 222)); //false
