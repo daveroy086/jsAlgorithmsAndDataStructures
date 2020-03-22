@@ -1,14 +1,17 @@
-//For the areThereDuplicates file check the video: does multiple pointers give O(nlogn).
-function areThereDuplicates(a){
+function areThereDuplicates(){
 
-    let myArgs = [arguments];  //does this help?
-    console.log(myArgs);
-    //return when multiplePointers first moves i
-
+    const myObject = {};
+    for(let i = 0; i < arguments.length; i++){
+        if(myObject.hasOwnProperty(arguments[i])){
+            return true;
+        }else{
+            myObject[arguments[i]] = 1;
+        }
+    }//end for i
+    return false;
 }//end areThereDuplicates()
-
 
 //Test Cases:
 console.log(areThereDuplicates(1, 2, 3));//false
-console.group(areThereDuplicates(1, 2, 2)); //true
+console.log(areThereDuplicates(1, 2, 2)); //true
 console.log(areThereDuplicates('a', 'b', 'c', 'a')); // true
