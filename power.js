@@ -1,6 +1,6 @@
 function power(base, exp){
 
-    //use recursion to calculate the power of a number
+    //use recursion to calculate a number raised to an exponent
     
     if(exp == 0){         //base case
         return 1;
