@@ -1,12 +1,16 @@
+function reverse(aString){
 
-function factorial(n){
-   
-    //use recursion to calculate the factorial of a number.
-    //if (n === 0) return 1;
-    if (n <= 1){    //base case
-        return 1;
+    //reverse becomes my recursive function wrapper
+    let reverseArray = aString...    //turn string into an array
+    let desrever = []; //an array to hold the letters as I accumulate them
+
+    function reverseInner(){
+        //get the last letter from reverse array
+        //add it to the beginning of desrever
+        //callreverseInner on the remainder of reverseArray
     }
-    
-    return n * factorial(n - 1);
- 
-}//end factorial()
+    //return desrever.join(); 
+}
+
+console.log(reverse('emosewa')); //awesome
+console.log(reverse('rithmschool')); //loohcsmhtir
