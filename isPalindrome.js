@@ -1,27 +1,19 @@
 function reverse(aString){
-    let reversedArray = [];
-    function reverseInner(aString){
-        if(aString.length == 1){
-            return reversedArray.push(aString[0]);
-        }
-        let aNewString = aString.substring(0, aString.length - 1);
-        reverseInner(aNewString);          
-        return reversedArray.unshift(aString[aString.length - 1]);
+    let reversedArray = [];    
+    if(aString.length == 1){
+        reversedArray.push(aString);
+        return reversedArray;
     }
-    reverseInner(aString);
+    reversedArray.unshift(aString.substring(aString.length - 1));
+        reversedArray = reversedArray.concat(reverse(aString.substring(0, aString.length - 1)));         
     return reversedArray.join("");
-}//end reverse()
-
+    }//end reverse()
 
 function isPalindrome(anotherString){
 
-    //write a reursive function to test if the given string is a palindrome
     let aReversedString = reverse(anotherString);
 
-    return (aReversedString == anotherString) ? 'true' : 'false';
-
-    //use the code form reverse.js to create the reversed aString then see if they are equal
-    //if this works, rewrite reverse as a pure (no wrapper function) recursive function
+    return (aReversedString == anotherString) ? true : false;
 
 }//end isPalindrome()
 
