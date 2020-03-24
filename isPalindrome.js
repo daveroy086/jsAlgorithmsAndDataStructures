@@ -5,7 +5,7 @@ function reverse(aString){
         return reversedArray;
     }
     reversedArray.unshift(aString.substring(aString.length - 1));
-        reversedArray = reversedArray.concat(reverse(aString.substring(0, aString.length - 1)));         
+    reversedArray = reversedArray.concat(reverse(aString.substring(0, aString.length - 1)));         
     return reversedArray.join("");
     }//end reverse()
 
