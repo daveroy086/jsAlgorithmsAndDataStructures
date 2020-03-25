@@ -8,11 +8,14 @@ function introToLinearSearch(arr, val){
 
     //find the value in the array and return it's index or -1 if it does not exist
 
-    let len = arr.length
+    let len = arr.length;
     for(i = 0; i < len; i ++){
         if(arr[i] == val){
             return i;
         }
     }
     return -1;
-}
+}//end introToLinearSearch()
+
+console.log(introToLinearSearch(['ebeneezer', 'bodhi', 'bella', 'murphy', 'elwood'], 'bella'));//2
+console.log(introToLinearSearch(['ebeneezer', 'bodhi', 'bella', 'murphy', 'elwood'], 'rick'));//-1
