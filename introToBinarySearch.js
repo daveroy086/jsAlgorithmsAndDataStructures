@@ -1,6 +1,6 @@
 function introToBinarySearch(sortedArray, value){
 
-    Pseudocode from class:
+    /* Pseudocode from class:
       This function accepts a sorted array and a value
       Create a left pointer at the start of the array, and
         a right pointer at the end of the array
@@ -9,7 +9,11 @@ function introToBinarySearch(sortedArray, value){
         If you find the value you want, return it's index
         If the value is to small, move the left pointer up
         If the value is too large, move the right pointer down
-      If you never find the value, return -1
+      If you never find the value, return -1 */
+
+      let lP = 0;
+      let rP = sortedArray.length;
+      let mP = Math.floor((sortedArray.length)/2);
 }
 
 console.log(introToBinarySearch([1, 2, 3, 4, 5], 2)); //1
