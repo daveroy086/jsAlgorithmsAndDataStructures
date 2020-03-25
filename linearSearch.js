@@ -13,6 +13,8 @@ function linearSearch(arr, val){
 }//end introToLinearSearch()
 
 console.log(linearSearch(['ebeneezer', 'bodhi', 'bella', 'murphy', 'elwood'], 'bella'));//2
+console.log(linearSearch(['ebeneezer', 'bodhi', 'bella', 'murphy', 'elwood'], 'ebeneezer'));//0
+console.log(linearSearch(['ebeneezer', 'bodhi', 'bella', 'murphy', 'elwood'], 'elwood'));//4
 console.log(linearSearch(['ebeneezer', 'bodhi', 'bella', 'murphy', 'elwood'], 'rick'));//-1
 console.log(linearSearch([10, 15, 20, 25, 30], 15));//1
 console.log(linearSearch([9, 8, 7, 6, 5, 4, 3, 2, 1, 0], 4));//5
