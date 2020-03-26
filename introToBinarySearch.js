@@ -15,14 +15,11 @@ function introToBinarySearch(sortedArray, value){
       let lP = 0;
       let rP = sortedArray.length;
       let mP = Math.floor((lP + rP)/2);
-      let currentDiff =Infinity;
+      let currentDiff = Infinity;
       let newDiff = -Infinity;
 
-      while(lP < rP){  /* per psuedocode.  If I had done:
-                                         while(sortedArray[mP] != value)
-                                         i could have despensed with the hack
-                                         currentDiff/newDiff???) */ 
-
+      while(lP < rP){
+        
         if(currentDiff == newDiff){//are my variables not varying
           return -1;
         }
@@ -53,3 +50,9 @@ console.log(introToBinarySearch([1, 2, 3, 4, 5], 6)); //-1
 console.log(introToBinarySearch([5, 6, 10, 13, 14,  79, 84, 86, 95, 96, 98, 99], 10)); //2
 console.log(introToBinarySearch([5, 6, 10, 13, 14, 18, 84, 86, 95, 96, 98, 99], 95)); //8
 console.log(introToBinarySearch([5, 6, 10, 13, 14,  18, 34, 35, 98, 99],  100)); //-1
+
+/* possible changes:
+  if i change rP = mP to rP = mp - 1; and
+              lP = mP to lP = mP + 1; and
+              the while conditions,
+              I could get rid of the currentDiff/newDiff  */
