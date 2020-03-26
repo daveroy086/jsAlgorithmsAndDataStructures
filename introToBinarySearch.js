@@ -1,5 +1,6 @@
 function introToBinarySearch(sortedArray, value){
 
+
     /* Pseudocode from class:
       This function accepts a sorted array and a value
       Create a left pointer at the start of the array, and
@@ -13,15 +14,42 @@ function introToBinarySearch(sortedArray, value){
 
       let lP = 0;
       let rP = sortedArray.length;
-      let mP = Math.floor((sortedArray.length)/2);
-}
+      let mP = Math.floor((lP + rP)/2);
+      let currentDiff =Infinity;
+      let newDiff = -Infinity;
+
+      while(lP < rP){  /* per psuedocode.  If I had done:
+                                         while(sortedArray[mP] != value)
+                                         i could have despensed with the hack
+                                         currentDiff/newDiff???) */ 
+
+        if(currentDiff == newDiff){//are my variables not varying
+          return -1;
+        }
+
+        currentDiff = rP - lP;
+        mP = Math.floor((lP + rP)/2);
+        if(sortedArray[mP] == value){
+          return mP;
+        }
+
+        if(value < sortedArray[mP]){
+          rP = mP;
+        }
+
+        if(value > sortedArray[mP]){
+          lP = mP;
+        }
+
+        newDiff = rP - lP;
+
+      }// end while
+}//end introToBinarySearch()
 
 console.log(introToBinarySearch([1, 2, 3, 4, 5], 2)); //1
 console.log(introToBinarySearch([1, 2, 3, 4, 5], 3)); //2
 console.log(introToBinarySearch([1, 2, 3, 4, 5], 5)); //4
 console.log(introToBinarySearch([1, 2, 3, 4, 5], 6)); //-1
-console.log(introToBinarySearch([5, 6, 10, 13, 14, 18, 30, 34, 35, 37, 40, 44, 64, 79, 84, 86, 95, 96, 98, 99], 10)); //2
-
-console.log(introToBinarySearch([5, 6, 10, 13, 14, 18, 30, 34, 35, 37, 40, 44, 64, 79, 84, 86, 95, 96, 98, 99], 95)); //16
-
-console.log(introToBinarySearch([5, 6, 10, 13, 14, 18, 30, 34, 35, 37, 40, 44, 64, 79, 84, 86, 95, 96, 98, 99], 100)); //-1
+console.log(introToBinarySearch([5, 6, 10, 13, 14,  79, 84, 86, 95, 96, 98, 99], 10)); //2
+console.log(introToBinarySearch([5, 6, 10, 13, 14, 18, 84, 86, 95, 96, 98, 99], 95)); //8
+console.log(introToBinarySearch([5, 6, 10, 13, 14,  18, 34, 35, 98, 99],  100)); //-1
