@@ -1,34 +1,23 @@
 function mergeArrays(array1, array2){    //merge two sorted arrays
 
-/*
-psuedocode:
-  create an empty array, take a loop at the smallest values in each input array.
-  while there are still values we haven't looked at:
-    if the value in the first array is smaller than the value in the second array, push the value in the first array into our results and move on to the next value in the first array
-    if the value in the first array is larger than the value in the second array, push the value in the second array into our results and move on to the next value in the second array
-    once we exhaust one array, push all the remaining values from the other array
- */ 
+
     let output = [];
-    let inArray = 'first';
     let i = 0;//first array index
     let j = 0;//second array index
     let len1 = array1.length;
     let len2 = array2.length;
 
-    while((i + j) < (len1 + len2)){    //look at all the values in both arrays
-        //compare first value of each array
+    while((i + j) < (len1 + len2)){
         if(array1[i] < array2[j]){
           output.push(array1[i]);
-          console.log(output);
           i++;
           if( i == len1){
             output = output.concat(array2.splice(j));
             i = i + array2.slice(j).length;
             return output;    
           }
-        }else{    //if the value in the first is smaller take that value and put it in output
+        }else{
           output.push(array2[j]);
-          console.log(output);
           j++;
           if( j == len2){
             output = output.concat(array1.slice(i));
@@ -37,13 +26,9 @@ psuedocode:
           }
         }//end else
     }//end while()
-    //return output;
-    //set inArray to first   
-    //else take the value from the second array and set inArray to second
-    //if inArray is first go to the next value in first and compare it to the same value insecond
 }//end mergeArrays()
 
-//to test:
+/*//to test:
 function insertionSort(arr){
 
     var arrLength = arr.length;
@@ -62,18 +47,14 @@ function insertionSort(arr){
             }//end for j
         }//end else
     }//end for 
-    //console.log("anotherArrayN sorted is ", arr);
     return arr;
 }//end insertionSort()
 
 function makeSortedArray(){
-
     let anArray = [];
     for(k = 0; k < 5; k++){
         anArray.push(Math.floor(Math.random() * 10));
     }
-  //  console.log("anArray is ", anArray)
-
 return insertionSort(anArray);
 }// end makeSortedArray()
 
@@ -85,4 +66,4 @@ console.log("anotherArray1 is ", anotherArray1);
 anotherArray2 = makeSortedArray();
 console.log("anotherArray2 is ", anotherArray2);
 
-console.log(mergeArrays(anotherArray1, anotherArray2));
+console.log(mergeArrays(anotherArray1, anotherArray2));*/
