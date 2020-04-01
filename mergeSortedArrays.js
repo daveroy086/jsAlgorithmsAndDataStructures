@@ -19,29 +19,31 @@ psuedocode:
         //compare first value of each array
         if(array1[i] < array2[j]){
           output.push(array1[i]);
+          console.log(output);
           i++;
           if( i == len1){
-            //if at the end of array1 push the rest of array2
-            output.concat(array2.slice(j));
-    
+            output = output.concat(array2.splice(j));
+            i = i + array2.slice(j).length;
+            return output;    
           }
         }else{    //if the value in the first is smaller take that value and put it in output
           output.push(array2[j]);
+          console.log(output);
           j++;
           if( j == len2){
-            //if at the end of array1 push the rest of array2
-            output.concat(array1.slice(i));
-    
+            output = output.concat(array1.slice(i));
+            j = j + array1.slice(i).length;
+            return output;    
           }
         }//end else
     }//end while()
-    return output;
+    //return output;
     //set inArray to first   
     //else take the value from the second array and set inArray to second
     //if inArray is first go to the next value in first and compare it to the same value insecond
 }//end mergeArrays()
 
-/* //to test:
+//to test:
 function insertionSort(arr){
 
     var arrLength = arr.length;
@@ -75,10 +77,12 @@ function makeSortedArray(){
 return insertionSort(anArray);
 }// end makeSortedArray()
 
+//anotherArray1 = [ 2, 3, 6, 7, 8];
 anotherArray1 = makeSortedArray();
 console.log("anotherArray1 is ", anotherArray1);
 
+//anotherArray2 = [ 0, 1, 4, 5, 9, 10, 11, 12];
 anotherArray2 = makeSortedArray();
 console.log("anotherArray2 is ", anotherArray2);
- */
-console.log(mergeArrays([ 0, 3, 4, 6, 7 ],  [ 1, 4, 5, 6, 7]));
+
+console.log(mergeArrays(anotherArray1, anotherArray2));
