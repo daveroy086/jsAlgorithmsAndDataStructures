@@ -1,6 +1,5 @@
 function mergeArrays(array1, array2){    //merge two sorted arrays
 
-
     let output = [];
     let i = 0;//first array index
     let j = 0;//second array index
@@ -66,4 +65,32 @@ console.log("anotherArray1 is ", anotherArray1);
 anotherArray2 = makeSortedArray();
 console.log("anotherArray2 is ", anotherArray2);
 
-console.log(mergeArrays(anotherArray1, anotherArray2));*/
+console.log(mergeArrays(anotherArray1, anotherArray2));
+*/
+
+/*
+code from class:
+function merge(arr1, arr2){
+    let results = [];
+    let i = 0;
+    let j = 0;
+    while(i < arr1.length && j < arr2.length){
+        if(arr2[j] > arr1[i]){
+            results.push(arr1[i]);
+            i++;
+        }else{
+            results.push(arr2[j]);
+            j++;
+        }
+    }
+    while(i < arr1.length){
+        results.push(arr1[i]);
+        i++;
+    }
+    while(j < arrs.length){
+        results.push(arr2[j]);
+        j++;
+    }
+    return results;
+}
+*/
