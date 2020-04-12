@@ -1,14 +1,9 @@
-function RadixSort(arr){
+function radixSort(arr){
+
+    console.log(arr);
 
     /*
     Pseudocode:
-        Define a function that accepts an array of numbers
-        figure out how many digits the largest number has
-        Loop from k = 0 up to theis largest number of digits
-        For each iteration of the loop:
-            Create buckets for each digit (0 to 9)
-            Place each number in the corresponding bucket based on it's kth digit
-            Replace our existing array with values in our buckets, starting with zero andgoing up to 9
             return list at the end
     */
     
@@ -27,6 +22,43 @@ function RadixSort(arr){
         });
         return longestInt;
     }
+
+    //figure out how many digits the largest number has
+    let howManyDigits = digitCount(arr);
+
+    //Loop from k = 0 up to this largest number of digits
+    for(k = 0; k < howManyDigits; k++){
+        //For each iteration of the loop:
+        //Create buckets for each digit (0 to 9)
+        let buckets = [[], [], [], [], [], [], [], [], [], []];
+
+        //Place each number in the corresponding bucket based on it's kth digit
+        arr.forEach(function(element){
+            //get it's kth digit
+            let kthDigit = getDigit(element, k);
+            //push it to the kth bucket
+            buckets[kthDigit].push(element);
+            //console.log(buckets);
+            //delete it from arr:
+              //get it's index
+              let index = arr.indexOf(element);
+              // don't remove it...redefine the empty arr before you fill it
+              //arr.splice(index, 1);
+              //console.log('arr is ', arr);
+        });//end forEach()
+        
+        //Replace our existing array with values in our buckets, starting with zero and going up to 9
+        arr = [];
+        console.log("arr is ", buckets);
+        buckets.forEach(function(eachSubArray){
+            console.log('eachSubArray is ', eachSubArray);
+            arr.concat(eachSubArray);
+        });
+        console.log(arr);
+        console.log("new loop");
+    }
+
 }//end radixSort()
-let anArray = [1, 456, 23, 7890];
-console.log(digitCount(anArray));
+
+let anArray = [1, 456, 23, 7890, 2, 45, 789, 4, 78, 7];
+console.log(radixSort(anArray));
