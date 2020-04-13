@@ -36,4 +36,8 @@ return arr;
 }//end radixSort()
 
 let anArray = [1, 456, 23, 7890, 2, 45, 789, 4, 78, 7];
+/* for(a = 0; a < 20; a++){
+    anArray.push (Math.floor(Math.random() * 100));
+}//end for a
+console.log(anArray); */
 console.log(radixSort(anArray));
