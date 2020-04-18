@@ -31,7 +31,7 @@ class SinglyLinkedList{
         let current = this.head;    //create a var named current equal to the head node
         while(current){
             console.log(current.val);    //print the nodes val
-            console.log(current.next);
+            //console.log(current.next);
             current = current.next;    //change the value of the variable current to the next node
         }//end traverse()
     }//end travrse()
@@ -131,28 +131,34 @@ class SinglyLinkedList{
         }
     }//end set()
 
-    insert(index, value){/***************************I need to test insert************************** */
+    insert(value, index){/***************************I need to test insert************************** */
         //pseudocode:
-                //If the index is less than zero or greater than this.length return false
+        //If the index is less than zero or greater than this.length return false
         if (index < 0 || this.length < index) return false;
-        //create a new node with a 'value' and insert it into the list at the index
-        let newNode = new Node(val);
         //if the index is the same as the length, push a new node to the end of the list
         if(index == this.length){
-            let pushReturn = this.push(val);
+            let pushReturn = this.push(value);
             if(pushReturn == this) return true;
         }
         //If the index is zero unshift the node to the beginning of the list
         if(index == 0){
-            let unshiftReturn = this.unshift(val);
+            let unshiftReturn = this.unshift(value);
             if (unshiftReturn == this) return true;
         }
+        //create a new node with a 'value' and insert it into the list at the index
+        let insertedNode = new Node(value);    //'insertedNode' is the node we will insert
+        // Notes to self:
+            //in order to manipulate the nodes you need to name them first
+            //below: 'beforeInserted' is the existing node that eventually will come before the node we will insert
+            //       'insertedNode' is already named above
+            //       'afterInserted' is the existing node that will come after the n ode we will insert 
         //Otherwise, using the get method, access the node at index - 1
-        this.get(index - 1);
-        //set the next property on that node to be the new node
-        this.next = newNode;
+        let beforeInserted = this.get(index - 1);
+        let afterInserted = this.get (index);
+        //set the next property on that node ( the got not) to be the new node
+        beforeInserted.next = insertedNode;
         //Set the next property on the new node to be the previous next
-        newNode.next.this.get(index);//is this right
+        insertedNode.next = afterInserted;//is this right
         //increment the length
         this.length++;
         //return true
@@ -165,43 +171,69 @@ class SinglyLinkedList{
 let ls = new SinglyLinkedList();
 
 ls.push("hi");
-console.log("After push(hi), ls is:");
+/* console.log("After push(hi), ls is:");
 ls.traverse();
 console.log("");
-
+ */
 ls.push("Hello");
-console.log("After push(hello), ls is:");
+/* console.log("After push(hello), ls is:");
 ls.traverse();
 console.log("");
-
+ */
 ls.pop();
-console.log("After pop(), ls is:");
+/* console.log("After pop(), ls is:");
 ls.traverse();
 console.log("");
-
+ */
 ls.push("bonjour");
 ls.push("ciao");
 ls.push("hola");
 ls.push("ni hao");
-console.log("After 'push'ing 'bonjour', 'ciao', 'hola' and 'ni hao', ls is:");
+/* console.log("After 'push'ing 'bonjour', 'ciao', 'hola' and 'ni hao', ls is:");
 //ls.push("ola");
 ls.traverse();
 console.log("");
-
+ */
 ls.shift();
-console.log("After shift(), ls is:");
+/* console.log("After shift(), ls is:");
 ls.traverse();
 console.log("");
-
+ */
 ls.unshift("ola");
-console.log("After unshift(ola), ls is:");
+/* console.log("After unshift(ola), ls is:");
 ls.traverse();
 console.log("");
-
-console.log("When I 'get(8)' the return is", ls.get(8));
+ */
+/* console.log("When I 'get(8)' the return is", ls.get(8));
 console.log("");
 
 console.log ("get(2) is: \n", ls.get(2));
-ls.set(2, "Hello");
-console.log("");
+ */ls.set(2, "Hello");
+/* console.log("");
 console.log("After I 'ls.set(2, \"Hello\")', get(2) is: \n", ls.get(2));
+console.log("");
+
+ */console.log("I traverse:");
+ls.traverse();
+console.log("");
+
+console.log("I insert(\"Hi\", 3)");
+ls.insert("Hi", 3);
+ls.traverse();
+console.log("");
+
+//create a new list
+let ls2 = new SinglyLinkedList();
+//ls2 is empty
+console.log("I traverse ls2, but it's empty so I see nothing between the asterisks: ");
+console.log("*****");
+ls2.traverse();
+console.log("*****");
+
+ls2.push("b");
+ls2.push("c");
+ls2.traverse();
+
+//inset at 0
+ls2.insert("a", 0);
+ls2.traverse();
