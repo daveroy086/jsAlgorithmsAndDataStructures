@@ -125,27 +125,43 @@ class SinglyLinkedList{
         return nodeToRemove;
     }//end remove()
 
-/* ********************************************Test me */
+    reverse(){    //reverse the order of the nodes
+        for(let index = this.length; index > 1; index--){
+            this.insert(this.get(0).val, index);
+            this.remove(0);
+            }//end for index
+        return ls3;
+    }//end reverse()
+
+}//end SinglyLinkedList
+
+let ls3 = new SinglyLinkedList;
+
+ls3.push('a');
+ls3.push('b');
+ls3.push('c');
+ls3.push('d');
+ls3.push('e');
+console.log("Before 'reverse()', ls3 is:");
+ls3.traverse();
+ls3.reverse();
+console.log("After 'reverse()', ls3 is:");
+ls3.traverse();
+
 /* 
-istill need/want to:
-  do reverse from class
-  add:
-  toString(){    //see the text in the book
-      init aString = getHead.val;
-      while(this.val != getTail.val){    //you need to give the node you're working with a name
-          let newString = aString.concat(this.next.val);//really?
-          aString = newString;
-      }
-      return aString;
-  }//end toString()
-  indexOf(val)
+I still want to add:
+  from book:
+  toString
+  indexOf
   isEmpty
   size
   getHead
-  getTail... from Groner
-  create my own insertToSorted() and sort() using mergeSort */
 
-}//end SinglyLinkedList
+  on my own:
+  getTail
+  insertToSorted()
+  sort() using mergeSort
+*/
 
 /*
 let ls = new SinglyLinkedList();
@@ -192,7 +208,7 @@ ls.insert("Hi", 3);
 ls.traverse();
 */
 
-//create a new list, ls2, and test insert
+/* //create a new list, ls2, and test insert and remove
 let ls2 = new SinglyLinkedList();
 //ls2 is empty
 console.log("I traverse ls2, but it's empty so I see nothing between the asterisks: ");
@@ -221,6 +237,7 @@ ls2.traverse();
 console.log("Removing the middle element with ls2.remove(1)");
 ls2.remove(1);
 ls2.traverse();
+ */
 /* 
 code in progress with comments:
 class Node{
@@ -414,6 +431,19 @@ class SinglyLinkedList{
         //retun the value of the node removed
         return nodeToRemove;
         }//end remove()
+
+        remove(index){    //removes the node at an index
+        if (index < 0 || this.length < index) return false;
+        if(index == this.length) return !!this.pop(index);
+        if(index == 0) return !!this.shift(index);
+        let nodeToRemove = this.get(index);
+        let previousNode = this.get(index - 1);
+        let followingNode = this.get (index + 1);
+        previousNode.next = followingNode;
+        this.length--;
+        return nodeToRemove;
+        }//end remove()
+ 
 
 }//end SinglyLinkedList
 
