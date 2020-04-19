@@ -30,7 +30,7 @@ class SinglyLinkedList{
             console.log(current.val);
             //console.log(current.next);
             current = current.next;
-        }
+        }console.log("");
     }//end traverse()
 
     pop(){    //remove last node from list
@@ -102,14 +102,8 @@ class SinglyLinkedList{
 
     insert(value, index){    //inserts a new node with a value at the index
         if (index < 0 || this.length < index) return false;
-        if(index == this.length){
-            let pushReturn = this.push(value);
-            if(pushReturn == this) return true;
-        }
-        if(index == 0){
-            let unshiftReturn = this.unshift(value);
-            if (unshiftReturn == this) return true;
-        }
+        if(index == this.length) return !!this.push(value);
+        if(index == 0) return !!this.unshift(value);
         let insertedNode = new Node(value);
         let beforeInserted = this.get(index - 1);
         let afterInserted = this.get (index);
@@ -119,32 +113,37 @@ class SinglyLinkedList{
         return true;
     }
 
-/* ********************************************Test me */
     remove(index){    //removes the node at an index
-        //psuedocode
-        //if the index is less than zero or greater than length return false
         if (index < 0 || this.length < index) return false;
-        //If the index is the same as length- 1 use pop()
-         if(index == this.length){
-            let popReturn = this.pop(index);
-            if(popReturn == this) return true;
-         }
-        //if the index is zero use shift()
-        if(index == 0){
-            let shiftReturn = this.shift(value);
-            if (shiftReturn == this) return true;
-        }
+        if(index == this.length) return !!this.pop(index);
+        if(index == 0) return !!this.shift(index);
         let nodeToRemove = this.get(index);
-        //otherwise, using get(), access the node at the index - 1 node
-        let beforeNodeToRemove = this.get(index - 1);
-        let afterNodeToRemove = this.get (index + 1);
-        //set the next property of that node to be the next of the next node
-        beforeNodeToRemove.next = afterNodeToRemove;
-        //decrement the length
+        let previousNode = this.get(index - 1);
+        let followingNode = this.get (index + 1);
+        previousNode.next = followingNode;
         this.length--;
-        //retun the value of the node removed
         return nodeToRemove;
-        }//end remove()
+    }//end remove()
+
+/* ********************************************Test me */
+/* 
+istill need/want to:
+  do reverse from class
+  add:
+  toString(){    //see the text in the book
+      init aString = getHead.val;
+      while(this.val != getTail.val){    //you need to give the node you're working with a name
+          let newString = aString.concat(this.next.val);//really?
+          aString = newString;
+      }
+      return aString;
+  }//end toString()
+  indexOf(val)
+  isEmpty
+  size
+  getHead
+  getTail... from Groner
+  create my own insertToSorted() and sort() using mergeSort */
 
 }//end SinglyLinkedList
 
@@ -155,17 +154,14 @@ let ls = new SinglyLinkedList();
 ls.push("hi");
 console.log("After push(hi), ls is:");
 ls.traverse();
-console.log("");
 
 ls.push("Hello");
 console.log("After push(hello), ls is:");
 ls.traverse();
-console.log("");
 
 ls.pop();
 console.log("After pop(), ls is:");
 ls.traverse();
-console.log("");
 
 ls.push("bonjour");
 ls.push("ciao");
@@ -173,33 +169,27 @@ ls.push("hola");
 ls.push("ni hao");
 console.log("After 'push'ing 'bonjour', 'ciao', 'hola' and 'ni hao', ls is:");
 ls.traverse();
-console.log("");
 
 ls.shift();
 console.log("After shift(), ls is:");
 ls.traverse();
-console.log("");
 
 ls.unshift("ola");
 console.log("After unshift(ola), ls is:");
 ls.traverse();
-console.log("");
 
 console.log("When I 'get(8)' the return is", ls.get(8));
 console.log("");
 console.log ("get(2) is: \n", ls.get(2));
 ls.traverse();
-console.log("");
 
 ls.set(2, "Hello");
 console.log("After I 'ls.set(2, \"Hello\")', ls is: ");
 ls.traverse();
-console.log("");
 
 console.log("I insert(\"Hi\", 3)");
 ls.insert("Hi", 3);
 ls.traverse();
-console.log("");
 */
 
 //create a new list, ls2, and test insert
@@ -222,7 +212,15 @@ ls2.traverse();
 console.log("Now I\'ll insert(\"c\", 2) and traverse again");
 ls2.insert('c', 2);
 ls2.traverse();
-
+console.log("Removing the first element with ls2.remove(0)");
+ls2.remove(0);
+ls2.traverse();
+console.log("Removing the last element with ls2.remove(3)");
+ls2.remove(3);
+ls2.traverse();
+console.log("Removing the middle element with ls2.remove(1)");
+ls2.remove(1);
+ls2.traverse();
 /* 
 code in progress with comments:
 class Node{
@@ -393,7 +391,29 @@ class SinglyLinkedList{
         //return true
         return true;
         //coerce push and unshift into returning true or false 
-    }
+    }//ens insert()
+
+    remove(index){    //removes the node at an index
+        //psuedocode
+        //if the index is less than zero or greater than length return false
+        if (index < 0 || this.length < index) return false;
+        //If the index is the same as length- 1 use pop()
+         if(index == this.length) return !!this.pop(index);
+        //if the index is zero use shift()
+        if(index == 0) return !!this.shift(index);
+        let nodeToRemove = this.get(index);
+        //console.log(nodeToRemove);
+        //otherwise, using get(), access the node at the index - 1 node
+        let previousNode = this.get(index - 1);
+        //console.log(previousNode);
+        let followingNode = this.get (index + 1);
+        //set the next property of that node to be the next of the next node
+        previousNode.next = followingNode;
+        //decrement the length
+        this.length--;
+        //retun the value of the node removed
+        return nodeToRemove;
+        }//end remove()
 
 }//end SinglyLinkedList
 
