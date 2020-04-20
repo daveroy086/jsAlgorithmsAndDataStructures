@@ -33,9 +33,11 @@ class DLL{    //DoublyLinkedList
         }else{
             let current = this.head;
             while(current){
+                console.log("");
                 console.log("current val is ", current.val);
                 console.log("current prev is ", current.prev);
                 console.log("current next is ", current.next);
+                console.log("");
                 current = current.next;
             }
         }
@@ -112,6 +114,26 @@ class DLL{    //DoublyLinkedList
         return this;        
     }// end unshift()
 
+       get(index){    //get the val of a node at the given index
+        if(index < 0 || this.length - 1 < index){
+            return false;
+        }
+        let counter = 0;
+        if(index <= Math.floor(this.length / 2) ){
+            index = Math.floor(index / 2);
+        }else{
+            counter = Math.floor(index / 2);
+            index = index;
+        }
+        let current = this.head;
+        for(; counter <= index; counter++){
+            if(counter < index){
+                current = current.next;
+            }               
+        }//end for
+        return current; 
+    }//end get()
+
 
 }//end DoublyLinkedList
 
@@ -160,15 +182,16 @@ console.log("Do shift()");
 dll.shift();   //can't remove anything
 dll.traverse();
 */
-/* 
-//Test unshift():
+/* //Test unshift():
 console.log("unshift 'c'");
 dll.unshift('c');
 console.log("unshift 'b'");
 dll.unshift('b');
 console.log("unshift 'a'");
 dll.unshift('a');
-dll.simpleTraverse();
+dll.traverse();
+console.log("isHead is ", dll.isHead());
+console.log("isTail is ", dll.isTail());
 */
 /*console.log("get this.head");
 console.log(dll.isHead());
@@ -179,21 +202,7 @@ console.log(dll.isHead());
 dll.traverse();
 console.log(""); */
 /******************************************************************************** 
-
-    get(index){    //get the val of a node at the given index
-        if(index < 0 || this.length - 1 < index){
-            return false;
-        }
-        let current = this.head;
-        for(let counter = 0; counter <= index; counter++){
-            if(counter < index){
-                current = current.next;
-            }               
-        }//end for
-        return current; 
-    }//end get()
-
-    set(index, value){    //changes existing val at an index to new value
+   set(index, value){    //changes existing val at an index to new value
         let nodeToSet = this.get(index);
         if (nodeToSet == false){
             return false;
