@@ -1,4 +1,7 @@
 function mergeSort(anArray){
+  //check this out:
+      //https://www.freecodecamp.org/news/the-complete-guide-to-loops-in-javascript-f5e242921d8c/
+      //see the section on breaking to a label
     
     /* Pseudocode:
         Break up the array into halves until you have that are empty or have one element
