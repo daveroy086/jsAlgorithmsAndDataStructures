@@ -2,6 +2,7 @@ class Node{
     constructor(val){
         this.val = val;
         this.next = null;
+        this.prev = null;
     }
 }
 
@@ -11,31 +12,25 @@ class DLL{    //DoublyLinkedList
         this.tail = null;
         this.length = 0;
     }
-}//end DoublyLinkedList
-   /* class Node{
-    constructor(val){
-        this.val = val;
-        this.next = null;
-    }
-}
 
-class SinglyLinkedList{
-    constructor(){
-        this.head = null;
-        this.tail = null;
-        this.length = 0;
-    }
-    push(val){    //add a new val to the end of the list
+    push(val){
+        //psuedocode
+        //create a new node with the value passed to the function
         let newNode = new Node(val);
-        if(!this.head){
-            this.head = newNode;
-            this.tail = this.head;    
-        }else{
-            this.tail.next = newNode;
-            this.tail = newNode;
-        }
-        this.length++;
+        //If the head property is null set the head and the tail to be the newly created node
+        if(!this.head){             //if no head exists yet 
+            this.head = newNode;    //these set head and tail both to newNode
+            this.tail = this.head;
+        }else{ 
+        //If not, set the next property on the tail to be that node
+        this.tail.next = newNode;
+        //Set the previous property on the newly created node to be the tail
+        this.tail.prev = this.tail;
+        //Set the tail to be the newly created node
+        this.tail = newNode;
+        this.length++;    //increment the length of 'this' list
         return this;
+        }
     }//end push
 
     traverse(){    //list all vals in list
@@ -44,9 +39,23 @@ class SinglyLinkedList{
             console.log(current.val);
             //console.log(current.next);
             current = current.next;
-        }console.log("");
+        }
+        console.log("");
     }//end traverse()
 
+}//end DoublyLinkedList
+
+let dll = new DLL;
+
+console.log("Pushed 'a'");
+dll.push('a');
+dll.traverse();
+
+console.log("Pushed 'b'");
+dll.push('b');
+dll.traverse();
+/******************************************************************************** 
+    
     pop(){    //remove last node from list
         if(!this.head){ return undefined;}
         var current = this.head;
@@ -160,4 +169,56 @@ console.log("Before 'reverse()', ls3 is:");
 ls3.traverse();
 ls3.reverse();
 console.log("After 'reverse()', ls3 is:");
-ls3.traverse(); */
+ls3.traverse();
+*/
+
+/*
+Working code with all comments
+
+class Node{
+    constructor(val){
+        this.val = val;
+        this.next = null;
+        this.prev = null;
+    }
+}
+
+class DLL{    //DoublyLinkedList
+    constructor(){
+        this.head = null;
+        this.tail = null;
+        this.length = 0;
+    }
+
+    push(val){
+        //psuedocode
+        //create a new node with the value passed to the function
+        let newNode = new Node(val);
+        //If the head property is null set the head and the tail to be the newly created node
+        if(!this.head){             //if no head exists yet 
+            this.head = newNode;    //these set head and tail both to newNode
+            this.tail = this.head;
+        }else{ 
+        //If not, set the next property on the tail to be that node
+        this.tail.next = newNode;
+        //Set the previous property on the newly created node to be the tail
+        this.tail.prev = this.tail;
+        //Set the tail to be the newly created node
+        this.tail = newNode;
+        this.length++;    //increment the length of 'this' list
+        return this;
+        }
+    }//end push
+
+    traverse(){    //list all vals in list
+        let current = this.head;
+        while(current){
+            console.log(current.val);
+            //console.log(current.next);
+            current = current.next;
+        }
+        console.log("");
+    }//end traverse()
+
+}//end DoublyLinkedList
+*/
