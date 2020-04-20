@@ -118,16 +118,19 @@ class DLL{    //DoublyLinkedList
         if(index < 0 || this.length - 1 < index){
             return false;
         }
+
         let counter = 0;
-        if(index <= Math.floor(this.length / 2) ){
+        if(index <= Math.floor(this.length / 2) ){    //counter runs from the end to which index is closest
             index = Math.floor(index / 2);
         }else{
             counter = Math.floor(index / 2);
             index = index;
         }
+
         let current = this.head;
         for(; counter <= index; counter++){
             if(counter < index){
+                numberOfSteps++;
                 current = current.next;
             }               
         }//end for
@@ -193,7 +196,23 @@ dll.traverse();
 console.log("isHead is ", dll.isHead());
 console.log("isTail is ", dll.isTail());
 */
-/*console.log("get this.head");
+
+/* 
+//test get:
+//insert these:
+    //let numberOfSteps = 0;
+    //console.log("numberOfSteps is: ", numberOfSteps);
+for(j = 0; j < 100; j++){
+    for(i = 0; i < 20; i++){
+        let val = Math.floor(Math.random() * 100);
+        dll.unshift(val);
+    }
+    //dll.simpleTraverse();
+    let anIndex = Math.floor(Math.random() *  20);
+    dll.get(anIndex);
+}
+*/
+    /*console.log("get this.head");
 console.log(dll.isHead());
 console.log("unshift an 'a'");
 dll.unshift('a');
