@@ -55,13 +55,28 @@ class DLL{    //DoublyLinkedList
             this.tail = null;
         }
         let newTail = toBePopped.prev;
-        console.log("newTail is ", newTail);
         this.tail = newTail;
         this.tail.next = null;
         toBePopped.prev = null;
         this.length--;
         return toBePopped;
     }//end pop()
+
+        shift(){    //remove the first node from the list
+        if(this.length === 0) return undefined;
+        let removedHead = this.head;
+        let current = this.head;
+        let newHead = current.next;
+        this.head = newHead;
+        removedHead.next = null;
+        newHead.prev = null;
+        this.length--;
+        if(this.length == 0){
+            this.tail = null;
+        }
+        return removedHead;
+    }//end shift()
+
 
 }//end DoublyLinkedList
 
@@ -75,24 +90,23 @@ console.log("Pushed 'c'");
 dll.push('c');
 console.log("Pushed 'd'");
 dll.push('d');
+console.log('');
+
+console.log("Do pop(), then traverse().");
 dll.pop();
+console.log('');
+dll.traverse();
+console.log('');
+
 console.log("The head is ", dll.isHead());
-console.log("The tail is ", dll.isTail());
+console.log("Do shift(), then traverse().");
+dll.shift();
+dll.traverse();
+console.log("The head is ", dll.isHead());
+console.log('');
 
 /******************************************************************************** 
 
-    shift(){    //remove the first node from the list
-        if(!this.head) return undefined;
-        let temp = this.head;
-        let current = this.head;
-        current = current.next;
-        this.head = current;
-        this.length--;
-        if(this.length == 0){
-            this.tail = null;
-        }
-        return temp;
-    }//end shift()
 
     unshift(val){    //add a new val to the beginning of the list
         let newNode = new Node(val);
@@ -259,6 +273,21 @@ class DLL{    //DoublyLinkedList
 
     }//end pop()
 
+    shift(){    //remove the first node from the list
+        if(this.length === 0) return undefined;
+        let removedHead = this.head;    //assign existing head to a variable
+        let current = this.head;    //twice
+        let newHead = current.next;    //move to the second node
+        this.head = newHead;    //set this.head to be the old second node
+        removedHead.next = null;    //set the removed heads .next property to null
+        newHead.prev = null;    //set the newHeads .prev property to null 
+        this.length--;
+        if(this.length == 0){
+            this.tail = null;
+        }
+        return removedHead;
+    }//end shift()
+
 }//end DoublyLinkedList
 
 
@@ -278,13 +307,21 @@ dll.push('c');
 console.log("Pushed 'd'");
 dll.push('d');
 //dll.traverse();
-//console.log("The head is ", dll.isHead());
-//console.log("The tail is ", dll.isTail());
-
-dll.pop();
-dll.traverse();
 console.log("The head is ", dll.isHead());
 console.log("The tail is ", dll.isTail());
 
+
+console.log("Do pop(), then traverse().");
+dll.pop();
+console.log('');
+dll.traverse();
+console.log('');
+
+console.log("The head is ", dll.isHead());
+console.log("Do shift(), then traverse().");
+dll.shift();
+dll.traverse();
+console.log("The head is ", dll.isHead());
+console.log('');
 
 */
