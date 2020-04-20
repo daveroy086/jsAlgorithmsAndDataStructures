@@ -13,35 +13,55 @@ class DLL{    //DoublyLinkedList
         this.length = 0;
     }
 
-    push(val){
-        //psuedocode
-        //create a new node with the value passed to the function
+    push(val){    //add new node to end of list
         let newNode = new Node(val);
-        //If the head property is null set the head and the tail to be the newly created node
-        if(!this.head){             //if no head exists yet 
-            this.head = newNode;    //these set head and tail both to newNode
-            this.tail = this.head;
+        if(this.length === 0){    //if no head exists yet 
+            this.head = newNode;
+            this.tail = newNode;
         }else{ 
-        //If not, set the next property on the tail to be that node
         this.tail.next = newNode;
-        //Set the previous property on the newly created node to be the tail
-        this.tail.prev = this.tail;
-        //Set the tail to be the newly created node
+        newNode.prev = this.tail;
         this.tail = newNode;
-        this.length++;    //increment the length of 'this' list
-        return this;
         }
+        this.length++;
+        return this;
     }//end push
 
-    traverse(){    //list all vals in list
+    traverse(){    //list all vals in DLL
         let current = this.head;
         while(current){
-            console.log(current.val);
-            //console.log(current.next);
+            console.log("current is ", current);
             current = current.next;
         }
         console.log("");
     }//end traverse()
+
+    isHead(){
+        return this.head;
+    }//end isHead()
+    
+    isTail(){
+        return this.tail;
+    }// end isTail()
+
+    pop(){    //remove node from end of list
+        if(this.length === 0){    //If there is no head, return undefined
+            return undefined;
+        }       
+        
+        let toBePopped = this.tail;
+        if(this.length === 1){  //If the length is 1, the popped list will be empty so 
+            this.head = null;
+            this.tail = null;
+        }
+        let newTail = toBePopped.prev;
+        console.log("newTail is ", newTail);
+        this.tail = newTail;
+        this.tail.next = null;
+        toBePopped.prev = null;
+        this.length--;
+        return toBePopped;
+    }//end pop()
 
 }//end DoublyLinkedList
 
@@ -49,30 +69,17 @@ let dll = new DLL;
 
 console.log("Pushed 'a'");
 dll.push('a');
-dll.traverse();
-
 console.log("Pushed 'b'");
 dll.push('b');
-dll.traverse();
+console.log("Pushed 'c'");
+dll.push('c');
+console.log("Pushed 'd'");
+dll.push('d');
+dll.pop();
+console.log("The head is ", dll.isHead());
+console.log("The tail is ", dll.isTail());
+
 /******************************************************************************** 
-    
-    pop(){    //remove last node from list
-        if(!this.head){ return undefined;}
-        var current = this.head;
-        var newTail = current;
-        while(current.next){
-           newTail = current;
-           current = current.next;
-        }
-        this.tail = newTail;
-        this.tail.next = null;
-        this.length--;
-        if(this.length == 0){
-            this.head = null;
-            this.tail = null;
-        }
-        return current;
-    }//end pop()
 
     shift(){    //remove the first node from the list
         if(!this.head) return undefined;
@@ -200,11 +207,9 @@ class DLL{    //DoublyLinkedList
             this.tail = this.head;
         }else{ 
         //If not, set the next property on the tail to be that node
-        this.tail.next = newNode;
-        //Set the previous property on the newly created node to be the tail
-        this.tail.prev = this.tail;
-        //Set the tail to be the newly created node
-        this.tail = newNode;
+        this.tail.next = newNode;    //changes the next property of the current tail to newNode
+        newNode.prev = this.tail;    //Sets the previous property on the newly created node to be the tail
+        this.tail = newNode;    //Set the tail to be the newly created node
         this.length++;    //increment the length of 'this' list
         return this;
         }
@@ -220,5 +225,66 @@ class DLL{    //DoublyLinkedList
         console.log("");
     }//end traverse()
 
+    isHead(){
+        return this.head;
+    }//end isHead()
+    
+    isTail(){
+        return this.tail;
+    }// end isTail
+
+    pop(){    //remove node from end of list
+        
+        if(this.length === 0){    //If there is no head, return undefined
+            return undefined;
+        }       
+        
+        let toBePopped = this.tail;   //Store the current tail in a variable to be used and returned later
+        if(this.length === 1){  //If the length is 1, the popped list will be empty so 
+                                //set the head and the tail to be null
+            this.head = null;
+            this.tail = null;
+        }
+        let newTail = toBePopped.prev;
+        console.log("newTail is ", newTail);
+        this.tail = newTail;    //Update the tail to be the previous node
+            //toBePopped.prev didn't work because it didn't get the 
+            //node it got the previous property of the toBePopped node
+        console.log("isTail is ", this.isTail());
+        this.tail.next = null;    //set the new tails next to null
+        toBePopped.prev = null;    //Set the toBePopped previous to null
+        this.length--;    //Decrement the length
+        console.log("toBePopped is ", toBePopped);
+        return toBePopped;    //Return the value removed
+
+    }//end pop()
+
 }//end DoublyLinkedList
+
+
+console.log("Pushed 'a'");
+dll.push('a');
+//dll.traverse();
+
+console.log("Pushed 'b'");
+dll.push('b');
+//dll.traverse();
+
+console.log("Pushed 'c'");
+dll.push('c');
+//dll.traverse();
+
+
+console.log("Pushed 'd'");
+dll.push('d');
+//dll.traverse();
+//console.log("The head is ", dll.isHead());
+//console.log("The tail is ", dll.isTail());
+
+dll.pop();
+dll.traverse();
+console.log("The head is ", dll.isHead());
+console.log("The tail is ", dll.isTail());
+
+
 */
