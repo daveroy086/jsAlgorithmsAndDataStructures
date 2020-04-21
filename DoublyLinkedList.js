@@ -1,4 +1,4 @@
-class Node {
+ class Node {
     constructor(val) {
         this.val = val;
         this.next = null;
@@ -165,13 +165,26 @@ class DLL {    //DoublyLinkedList
         return true;
     }//end insert()
 
+    remove(index) {
+        //psuedocode
+        if(index < 0 || this.length <= index) return undefined;
+        if(index === 0) return !!this.shift();
+        if(index === this.length - 1) return !!this.pop();
+        let nodeToRemove = this.get(index);
+        let previousNode = this.get(index - 1);
+        let followingNode = this.get (index + 1);
+        previousNode.next = followingNode;
+        followingNode.prev = previousNode;
+        nodeToRemove.prev = null;
+        nodeToRemove.next = null;
+        this.length--;
+        return nodeToRemove;
+    }//end remove()
+
 }//end DoublyLinkedList
 
 /*
-console.log("Do dll.insert('f', 8).");
-dll.insert('f', 8); */
-
-/* 
+// Test push():  
 console.log("Pushed 'a'");
 dll.push('a');
 console.log("Pushed 'b'");
@@ -266,19 +279,27 @@ dll.insert('e', 4);
 dll.simpleTraverse();
 dll.traverse();
 */
-/******************************************************************************** 
-    remove(index){    //removes the node at an index
-        if (index < 0 || this.length < index) return false;
-        if(index == this.length) return !!this.pop(index);
-        if(index == 0) return !!this.shift(index);
-        let nodeToRemove = this.get(index);
-        let previousNode = this.get(index - 1);
-        let followingNode = this.get (index + 1);
-        previousNode.next = followingNode;
-        this.length--;
-        return nodeToRemove;
-    }//end remove()
-
+/* 
+// Test remove();
+let dll = new DLL();
+dll.push('a');
+dll.push('b');
+dll.push('c');
+dll.push('d');
+dll.push('e');
+dll.simpleTraverse();
+dll.traverse();    //check all properties
+dll.remove(0);
+dll.simpleTraverse();
+dll.traverse();    //check all properties
+dll.remove(1);
+dll.simpleTraverse();
+dll.traverse();    //check all properties
+dll.remove(2);
+dll.simpleTraverse();
+dll.traverse();    //check all properties
+*/
+/*
     reverse(){    //reverse the order of the nodes
         for(let index = this.length; index > 1; index--){
             this.insert(this.get(0).val, index);
@@ -290,7 +311,7 @@ dll.traverse();
 }//end SinglyLinkedList
 
 /*
-Working code with all comments
+Code with all comments
 
 class Node{
     constructor(val){
@@ -457,6 +478,24 @@ class DLL{    //DoublyLinkedList
         return true;
     }//end insert()
 
+    remove(index) {
+        //psuedocode
+        if(index < 0 || this.length <= index) {    // If the index is less than zero or 
+                                                   //equal to or greater than the length, return undefined     
+            return undefined;
+        }
+        if(index === 0) return !!this.shift();    // If the index is zero, use shift
+        if(index === this.length - 1) return !!this.pop();    // If the index is the same as the length - 1, use pop()
+        let nodeToRemove = this.get(index);    // Use the get() method to retrieve the item to be removed
+        // Update the .next and .prev properties to remove the found node from the list
+        let previousNode = this.get(index - 1);
+        let followingNode = this.get (index + 1);
+        previousNode.next = followingNode;
+        followingNode.prev = previousNode;
+        nodeToRemove.prev = null;    // Set these properties to null on the found node
+        this.length--;     // Decrement the length
+        return nodeToRemove;
+    }//end remove()
 
 }//end DoublyLinkedList
 
