@@ -114,33 +114,36 @@ class DLL{    //DoublyLinkedList
         return this;        
     }// end unshift()
 
-       get(index){    //get the val of a node at the given index
+    get(index){    //get the val of a node at the given index
         if(index < 0 || this.length - 1 < index){
             return false;
         }
-
+        
         let counter = 0;
-        if(index <= Math.floor(this.length / 2) ){    //counter runs from the end to which index is closest
-            index = Math.floor(index / 2);
+        let current  = new Node;
+        if(index <= Math.floor(this.length / 2) ){   //counter runs from the end to which index is closest
+            current = this.head;
+            for(counter = 0; counter <= index; counter++){    //count up from head
+                if(counter < index){
+                    current = current.next;
+                }             
+            }//end for 
         }else{
-            counter = Math.floor(index / 2);
-            index = index;
+            current = this.tail;
+            for(counter = this.length - 1; counter > index; counter--){    //count back from tail
+                if(counter > index){
+                    current = current.prev;
+                }               
+            }//end for       
         }
 
-        let current = this.head;
-        for(; counter <= index; counter++){
-            if(counter < index){
-                numberOfSteps++;
-                current = current.next;
-            }               
-        }//end for
-        return current; 
+        return current.val;
     }//end get()
 
 
 }//end DoublyLinkedList
 
-let dll = new DLL;
+//let dll = new DLL;
 
 /* 
 console.log("Pushed 'a'");
@@ -197,29 +200,21 @@ console.log("isHead is ", dll.isHead());
 console.log("isTail is ", dll.isTail());
 */
 
-/* 
+ 
 //test get:
-//insert these:
-    //let numberOfSteps = 0;
-    //console.log("numberOfSteps is: ", numberOfSteps);
-for(j = 0; j < 100; j++){
-    for(i = 0; i < 20; i++){
+for(let a = 0; a <= 9; a++){
+    let dll = new DLL;
+    for(let b = 0; b < 10; b++){
         let val = Math.floor(Math.random() * 100);
         dll.unshift(val);
     }
-    //dll.simpleTraverse();
-    let anIndex = Math.floor(Math.random() *  20);
-    dll.get(anIndex);
-}
-*/
-    /*console.log("get this.head");
-console.log(dll.isHead());
-console.log("unshift an 'a'");
-dll.unshift('a');
-console.log("show isHead and traverse.");
-console.log(dll.isHead());
-dll.traverse();
-console.log(""); */
+    dll.simpleTraverse();
+    let anIndex = a;//Math.floor(Math.random() *  20);
+    console.log("An index is ", anIndex);
+    console.log(dll.get(anIndex));
+}//end for a
+
+
 /******************************************************************************** 
    set(index, value){    //changes existing val at an index to new value
         let nodeToSet = this.get(index);
@@ -265,20 +260,6 @@ console.log(""); */
     }//end reverse()
 
 }//end SinglyLinkedList
-
-let ls3 = new SinglyLinkedList;
-
-ls3.push('a');
-ls3.push('b');
-ls3.push('c');
-ls3.push('d');
-ls3.push('e');
-console.log("Before 'reverse()', ls3 is:");
-ls3.traverse();
-ls3.reverse();
-console.log("After 'reverse()', ls3 is:");
-ls3.traverse();
-*/
 
 /*
 Working code with all comments
