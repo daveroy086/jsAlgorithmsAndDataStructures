@@ -1,24 +1,24 @@
-class Node{
-    constructor(val){
+class Node {
+    constructor(val) {
         this.val = val;
         this.next = null;
         this.prev = null;
     }
 }
 
-class DLL{    //DoublyLinkedList
-    constructor(){
+class DLL {    //DoublyLinkedList
+    constructor() {
         this.head = null;
         this.tail = null;
         this.length = 0;
     }
 
-    push(val){    //add new node to end of list
+    push(val) {    //add new node to end of list
         let newNode = new Node(val);
-        if(this.length === 0){    //if no head exists yet 
+        if(this.length === 0) {    //if no head exists yet 
             this.head = newNode;
             this.tail = newNode;
-        }else{ 
+        } else { 
         this.tail.next = newNode;
         newNode.prev = this.tail;
         this.tail = newNode;
@@ -27,12 +27,12 @@ class DLL{    //DoublyLinkedList
         return this;
     }//end push
 
-    traverse(){    //list all vals in DLL
-        if(this.length === 0){
+    traverse() {    //list all vals in DLL
+        if(this.length === 0) {
             console.log("Is empty");
-        }else{
+        } else {
             let current = this.head;
-            while(current){
+            while(current) {
                 console.log("");
                 console.log("current val is ", current.val);
                 console.log("current prev is ", current.prev);
@@ -44,35 +44,35 @@ class DLL{    //DoublyLinkedList
         console.log("");
     }//end traverse()
 
-    simpleTraverse(){    //list all vals in DLL
+    simpleTraverse() {    //list all vals in DLL
     console.log("");
         console.log("simpleTraverse");
         let current = this.head;
-        while(current){
+        while(current) {
             console.log(current.val);
             current = current.next;
         }
         console.log("");
     }//end traverse()
 
-    isHead(){
+    isHead() {
         return this.head;
     }//end isHead()
     
-    isTail(){
+    isTail() {
         return this.tail;
     }// end isTail()
 
-    pop(){    //remove node from end of list
-        if(this.length === 0){    //If there is no head, return undefined
+    pop() {    //remove node from end of list
+        if(this.length === 0) {    //If there is no head, return undefined
             return undefined;
         }       
         
         let toBePopped = this.tail;
-        if(this.length === 1){  //If the length is 1, the popped list will be empty so 
+        if(this.length === 1) {  //If the length is 1, the popped list will be empty so 
             this.head = null;
             this.tail = null;
-        }else{
+        } else {
             let newTail = toBePopped.prev;
             this.tail = newTail;
             this.tail.next = null;
@@ -82,29 +82,29 @@ class DLL{    //DoublyLinkedList
         return toBePopped;
     }//end pop()
 
-    shift(){    //remove the first node from the list
-        if(this.length === 0){
+    shift() {    //remove the first node from the list
+        if(this.length === 0) {
              return undefined;
         }
         let removedHead = this.head;
-        if(this.length === 1){
+        if(this.length === 1) {
             this.head = null;
             this.tail = null;
-        }else{
-            this.head = removedHead.next;    //Update the head to be the .next of the old head
-            this.head.prev = null;    //Set the head's .prev property to null
-            removedHead.next = null;    //set the old head's .next to null
-            this.length--;    //decrement the length
+        } else {
+            this.head = removedHead.next;
+            this.head.prev = null;
+            removedHead.next = null;
+            this.length--;
             return removedHead;
-            }
+        }
     }//end shift()
 
-    unshift(val){    //Add an new val to the beginning of DLL
+    unshift(val) {    //Add an new val to the beginning of DLL
         let newNode = new Node(val);
-        if(this.length === 0){
+        if(this.length === 0) {
             this.head = newNode;
             this.tail = newNode;            
-        }else{
+        } else {
             let currentHead = this.head;
             newNode.next = currentHead;
             currentHead.prev = newNode;
@@ -114,36 +114,62 @@ class DLL{    //DoublyLinkedList
         return this;        
     }// end unshift()
 
-    get(index){    //get the val of a node at the given index
-        if(index < 0 || this.length - 1 < index){
+    get(index) {    //get the node at the given index
+        if(index < 0 || this.length - 1 < index) {
             return false;
         }
         
         let counter = 0;
-        let current  = new Node;
-        if(index <= Math.floor(this.length / 2) ){   //counter runs from the end to which index is closest
-            current = this.head;
-            for(counter = 0; counter <= index; counter++){    //count up from head
-                if(counter < index){
+        let current  = this.head;
+        if(index <= Math.floor(this.length / 2)) {   //counter runs from the end to which index is closest
+            for(counter = 0; counter <= index; counter++) {    //count up from head
+                if(counter < index) {
                     current = current.next;
                 }             
             }//end for 
-        }else{
+        } else {
             current = this.tail;
-            for(counter = this.length - 1; counter > index; counter--){    //count back from tail
-                if(counter > index){
+            for(counter = this.length - 1; counter > index; counter--) {    //count back from tail
+                if(counter > index) {
                     current = current.prev;
                 }               
             }//end for       
         }
 
-        return current.val;
+        return current;
     }//end get()
 
+    set(index, value) {    //replace the value of the node at index with the passed value
+        if(this.get(index)) {
+            this.get(index).val = value;
+            return true;
+        }
+        return false;
+    }//end set()
+
+    
+    insert(value, index) {    //inserts a new node with a value at the index
+        if (index < 0 || this.length < index) return false;
+        if(index == 0) return !!this.unshift(value);
+        if(index == this.length) {
+            return !!this.push(value);
+        }
+        let newNode = new Node(value);
+        let beforeNew = this.get(index - 1);
+        let afterNew = this.get (index);
+        beforeNew.next = newNode;
+        newNode.prev = beforeNew;
+        newNode.next = afterNew;
+        afterNew.prev = newNode;
+        this.length++;
+        return true;
+    }//end insert()
 
 }//end DoublyLinkedList
 
-//let dll = new DLL;
+/*
+console.log("Do dll.insert('f', 8).");
+dll.insert('f', 8); */
 
 /* 
 console.log("Pushed 'a'");
@@ -199,8 +225,7 @@ dll.traverse();
 console.log("isHead is ", dll.isHead());
 console.log("isTail is ", dll.isTail());
 */
-
- 
+/*
 //test get:
 for(let a = 0; a <= 9; a++){
     let dll = new DLL;
@@ -213,32 +238,35 @@ for(let a = 0; a <= 9; a++){
     console.log("An index is ", anIndex);
     console.log(dll.get(anIndex));
 }//end for a
+*/
+/*
+//Test insert():
 
+let dll = new DLL;
 
+dll.push('b');
+dll.push('d');
+dll.simpleTraverse();
+console.log("Do dll.insert('a', -1)");
+console.log(dll.insert('a', -1));
+console.log("\n\n");
+
+console.log("Do dll.insert('a', 0), then traverse.");
+dll.insert('a', 0);
+dll.simpleTraverse();
+console.log("\n\n");
+
+console.log("Do dll.insert('c', 2), then traverse.");
+dll.insert('c', 2);
+dll.simpleTraverse();
+console.log("\n\n");
+
+console.log("Do dll.insert('e', 4), then traverse.");
+dll.insert('e', 4);
+dll.simpleTraverse();
+dll.traverse();
+*/
 /******************************************************************************** 
-   set(index, value){    //changes existing val at an index to new value
-        let nodeToSet = this.get(index);
-        if (nodeToSet == false){
-            return false;
-        }else{
-            nodeToSet.val = value;
-            return true;
-        }
-    }//end set()
-
-    insert(value, index){    //inserts a new node with a value at the index
-        if (index < 0 || this.length < index) return false;
-        if(index == this.length) return !!this.push(value);
-        if(index == 0) return !!this.unshift(value);
-        let insertedNode = new Node(value);
-        let beforeInserted = this.get(index - 1);
-        let afterInserted = this.get (index);
-        beforeInserted.next = insertedNode;
-        insertedNode.next = afterInserted;
-        this.length++;
-        return true;
-    }
-
     remove(index){    //removes the node at an index
         if (index < 0 || this.length < index) return false;
         if(index == this.length) return !!this.pop(index);
@@ -372,6 +400,63 @@ class DLL{    //DoublyLinkedList
         return this;    //return this; 
         
     }// end unshift()
+
+    get(index){    //get the val of a node at the given index
+        if(index < 0 || this.length - 1 < index){
+            return false;
+        }
+        
+        let counter = 0;
+        let current  = new Node;
+        if(index <= Math.floor(this.length / 2) ){   //counter runs from the end to which index is closest
+            current = this.head;
+            for(counter = 0; counter <= index; counter++){    //count up from head
+                if(counter < index){
+                    current = current.next;
+                }             
+            }//end for 
+        }else{
+            current = this.tail;
+            for(counter = this.length - 1; counter > index; counter--){    //count back from tail
+                if(counter > index){
+                    current = current.prev;
+                }               
+            }//end for       
+        }
+
+        return current.val;
+    }//end get()
+
+        set(index, value){    //replace the value of the node at index with the passed value
+        this.get(index).val = value;        
+    }//end set()
+
+    insert(value, index){    //inserts a new node with a value at the index
+        //pseudocode    
+        //If the endex is less than zero or greater than or equal to this.length return false
+        if (index < 0 || this.length < index) return false;
+        //If the index is zero insert using unshift()
+        if(index == 0) return !!this.unshift(value);
+        //If the index is the same as this.length insert using push()
+        if(index == this.length){
+            console.log("HI");
+            return !!this.push(value);
+        }      
+        let newNode = new Node(value);
+        //Use the get() method to accesss the index - 1 node
+        let beforeNew = this.get(index - 1);
+        let afterNew = this.get (index);
+        //Set the .next() and .prev() values on the correct nodes to link everything together 
+        beforeNew.next = newNode;
+        newNode.prev = beforeNew;
+        newNode.next = afterNew;
+        afterNew.prev = newNode;
+        //Increment the length
+        this.length++;
+        //Return true
+        return true;
+    }//end insert()
+
 
 }//end DoublyLinkedList
 
