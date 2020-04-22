@@ -6,7 +6,7 @@
     }
 }
 
-class DLL {    //DoublyLinkedList
+class DoublyLinkedList {    //DoublyLinkedList
     constructor() {
         this.head = null;
         this.tail = null;
@@ -94,9 +94,9 @@ class DLL {    //DoublyLinkedList
             this.head = removedHead.next;
             this.head.prev = null;
             removedHead.next = null;
-            this.length--;
-            return removedHead;
         }
+        this.length--;
+        return removedHead;
     }//end shift()
 
     unshift(val) {    //Add an new val to the beginning of DLL
@@ -180,6 +180,15 @@ class DLL {    //DoublyLinkedList
         this.length--;
         return nodeToRemove;
     }//end remove()
+
+    reverse() {
+        for(let i = this.length - 2; i >= 0; i--) {
+            let nodeToRemove = this.get(i);
+            this.remove(i);
+            this.insert(nodeToRemove.val,this.length);            
+        }
+        return this;
+    }//end reverse()
 
 }//end DoublyLinkedList
 
@@ -298,6 +307,15 @@ dll.traverse();    //check all properties
 dll.remove(2);
 dll.simpleTraverse();
 dll.traverse();    //check all properties
+*/
+/* 
+// Test reverse():
+let dll = new DLL();
+dll.push('a').push('b').push('c').push('d').push("e");
+dll.simpleTraverse();
+dll.reverse();
+console.log('ran reverse. Now dll is: ');
+dll.simpleTraverse();
 */
 /*
     reverse(){    //reverse the order of the nodes
