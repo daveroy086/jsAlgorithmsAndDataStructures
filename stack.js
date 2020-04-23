@@ -5,6 +5,7 @@
             // are different fromt the original SLL versions
 
 // Check the vids and see what he wants for outputs
+//add my other comments
 
 class Node{
     constructor(value){
@@ -20,20 +21,21 @@ class Stack{
         this.size = 0;
     }
 
-    push(value){    //add a new value to the beginning of the list
+    push(value){    //add a new node to the stack
         let newNode = new Node(value);
-        if(!this.first){
+        if(!this.first) {
             this.first = newNode;
-            this.last = this.first;
-        }else{
-        newNode.next = this.first;
-        this.first = newNode;
+            this.last = newNode;
+        } else {
+            // Test my version vs CSs version ... then check the rest of my code vs his
+            newNode.next = this.first;
+            this.first = newNode;
         }
         this.size++;
         return this;
     }//end push()
 
-    pop(){    //remove the first node from the list
+    pop(){    //remove the first node from the stack
         if(!this.first) return undefined;
         let temp = this.first;
         let current = this.first;
@@ -60,11 +62,8 @@ class Stack{
 
     listNodes(){    //list all nodes in the stack
         let current = this.first;
-        //while(current){
             console.log(current);
-            //console.log(current.next);
-          //  current = current.next;
-        /* } */console.log("");
+            console.log("");
     }//end listNodes()
 
     peek() {
