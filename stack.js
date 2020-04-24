@@ -1,11 +1,4 @@
-  // Notes:
-      // Make notes about implementing each with an array...two or three lines about each
-          // Why is the SLL version better
-      // Pay attention to how the push, pop and peek functions included in the SLL versions
-            // are different fromt the original SLL versions
-
 // Check the vids and see what he wants for outputs
-//add my other comments
 
 class Node{
     constructor(value){
@@ -27,25 +20,24 @@ class Stack{
             this.first = newNode;
             this.last = newNode;
         } else {
-            // Test my version vs CSs version ... then check the rest of my code vs his
             newNode.next = this.first;
             this.first = newNode;
         }
         this.size++;
-        return this;
+        return this.size;
     }//end push()
 
     pop(){    //remove the first node from the stack
-        if(!this.first) return undefined;
+        if(!this.first) return null;
         let temp = this.first;
-        let current = this.first;
-        current = current.next;
-        this.first = current;
-        this.size--;
         if(this.size == 0){
             this.last = null;
         }
-        return temp;
+        let current = this.first;    /*figure out how this works and how he did it with one line */
+        current = current.next;
+        this.first = current;
+        this.size--;
+        return temp.value;
     }//end pop()
 
     list() {    //list all values in DLL
@@ -68,11 +60,13 @@ class Stack{
 
     peek() {
         console.log('The top Node is: ', this.first);
-        return this.first;
+        return this.size;
     }//end peek()
     
 }//end Stack
 
+/* 
+// Test Stack()
 let s = new Stack;
 
 s.push('c');
@@ -97,3 +91,18 @@ s.list();
 s.listNodes();
 s.pop();
 s.listNodes();
+ */
+
+/* 
+Notes:
+A stack is basically any a data structure that uses the First In/First Out method
+Stacks are used in:
+  managing function invocations ((i.e. == id est == 'in other words') a 'call stack')
+  undo/redo in PhotoShop or crtl>z in a word processor 
+  browser history
+  other data structures such as trees and graphs
+We use a stack instead of an array because using an array would include index overhead
+aAding and deleting from the top of the stack is constant time
+ 
+CS says we can use ASinglyLinkedList or a DLL but wouldn't the DLL have extra overhead from the .prev pointers
+*/
