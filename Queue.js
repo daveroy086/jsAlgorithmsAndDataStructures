@@ -1,5 +1,3 @@
-// Check the vids and see what he wants for outputs
-
 class Node{
     constructor(value){
         this.value = value;
@@ -7,35 +5,33 @@ class Node{
     }
 }
 
-class Stack{
+class Queue{
     constructor(){
         this.first = null;
         this.last = null;
         this.size = 0;
     }
 
-    push(value){    //add a new node to the stack
+    enqueue(value){    //add a new node to the end of the queue
         let newNode = new Node(value);
         if(!this.first) {
             this.first = newNode;
             this.last = newNode;
         } else {
-            newNode.next = this.first;
-            this.first = newNode;
+            this.last.next = newNode;    //set the .next property of the existing last node to newNode
+            this.last = newNode;    // set the .last property of the list to newNode 
         }
         this.size++;
         return this.size;
     }//end push()
 
-    pop(){    //remove the first node from the stack
+    dequeue(){    //remove the first node from the beginning of the queue
         if(!this.first) return null;
         let temp = this.first;
-        if(this.size == 0){
+        if(this.first == this.last){
             this.last = null;
         }
-        let current = this.first;    /*figure out how this works and how he did it with one line */
-        current = current.next;
-        this.first = current;
+        this.first = this.first.next;        
         this.size--;
         return temp.value;
     }//end pop()
@@ -95,14 +91,28 @@ s.listNodes();
 
 /* 
 Notes:
-A stack is basically any a data structure that uses the First In/First Out method
-Stacks are used in:
-  managing function invocations ((i.e. == id est == 'in other words') a 'call stack')
-  undo/redo in PhotoShop or crtl>z in a word processor 
-  browser history
+A queue is basically any a data structure that uses the First In/First Out method
+Queues are used in:
+  background tasks
+  uploading / downloading
+  printing and other processing
   other data structures such as trees and graphs
-We use a stack instead of an array because using an array would include index overhead
-aAding and deleting from the top of the stack is constant time
+We use a queue made from a SinglyLinkedList instead of an array because using an array would include index overhead
+adding and deleting from the top of the is constant time
  
-CS says we can use ASinglyLinkedList or a DLL but wouldn't the DLL have extra overhead from the .prev pointers
+CS says we can use a SinglyLinkedList or a DLL but wouldn't the DLL have extra overhead from the .prev pointer
+
+IDK if it's a rule but in the code CS seems to set node properties before class properties
+
+To implement a queue using an array:
+  initialize the array then use unshift / pop or push / shift
+
+in dequeue i wrote:
+    let current = this.first.next;
+    temp.next = null;    //removes the next prop from the removed node?
+    this.first = current;
+he wrote:
+    this.first = this.first.next;
+    find the video where CS accesses the removed node and use that to test your code vs his
+    the video should be in the SLL section      
 */
