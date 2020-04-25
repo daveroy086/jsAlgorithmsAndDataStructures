@@ -95,7 +95,7 @@ s.listNodes();
 
 /* 
 Notes:
-A stack is basically any a data structure that uses the First In/First Out method
+A stack is basically any a data structure that uses the Last In/First Out method
 Stacks are used in:
   managing function invocations ((i.e. == id est == 'in other words') a 'call stack')
   undo/redo in PhotoShop or crtl>z in a word processor 
