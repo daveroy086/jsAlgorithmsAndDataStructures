@@ -6,7 +6,7 @@
     }
 }
 
-class DoublyLinkedList {    //DoublyLinkedList
+class DoublyLinkedList {     //DoublyLinkedList
     constructor() {
         this.head = null;
         this.tail = null;
