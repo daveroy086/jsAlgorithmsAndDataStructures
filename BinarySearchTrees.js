@@ -46,34 +46,29 @@ class BinarySearchTree {
     }//end insert()
 
     includes(value) {
-        // psuedocode
-        if(this.root == null) {    // Check if there is a root..if not return false
-            console.log('The root must be empty');
+        
+        if(this.root == null) {    // Check if there is a root
             return false;
         }
 
         let keepGoing = true;
         let current = this.root;
         
-        while(current && keepGoing){    // Checks every node until it finds the value or returns false
-            if(current.value == value) {    // If there is a root,
-                                            // check if the value of the new node
-                                            // is the value we are looking for.
-                return true;}    // If it is return true
-            if(value < current.value) {    // If not check to see if the value is 
-                                             //greater than or less than the value of the root
-                // If it is less, go left:
-                if(current.left) {    // If there is move to that node and repeat these steps
+        while(current && keepGoing){
+            if(current.value == value) {
+                return true;
+            }
+            if(value < current.value) {
+                if(current.left) {
                     current = current.left;
-                    console.log('current is', current);
                 } else {
-                    return false;}    // If there is not a node there return false}    // end if(this.root.value < value)
-                // If it is greater, go right:
+                    return false;
+                }
+
                 if(current.right) {
-                    current = current.right;    // If there is move to that node and repeat these steps
-                    console.log('current (right) is', current);
+                    current = current.right;
                 } else {
-                        return false;    // If there is not a node there return false
+                        return false;
                 }
             }    // end if(value < current.value)
         }    //end while    
