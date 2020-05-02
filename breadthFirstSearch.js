@@ -71,45 +71,17 @@ for(j = 0; j < len; j++) {
     t.insert(anArray[j]);
 }
 
-//Create a queue(this can be an array) and a variable to store the values of the nodes visited
 let aQueue = [];
 let output = [];
 
-// Place the root node in the queue
 aQueue.push(t.root);
-//console.log('aQueue is ', aQueue);
 
-// Loop as long as there is anything in the queue
-//let aSentinal = true;
 while(aQueue.length != 0) {
-   // Dequeue a node from the queue and push the value of the node into the variable that stores the nodes
+
    let aNode = aQueue.shift();
    output.push(aNode.value);
-  // console.log('output is ', output);
-   // If there is a left property on the node dequeued - add it to the queue
    if(aNode.left != null) aQueue.push(aNode.left);
-   // If there is a right property on the node dequeued - add it to the queue
    if(aNode.right != null) aQueue.push(aNode.right);
-   //console.log('aQueue is ', aQueue);
-   //aSentinal = false;
 } // end while
-// Return the variable that stores the values
-console.log('output is ', output);
+//console.log('output is ', output);
 return output;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
