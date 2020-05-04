@@ -59,7 +59,25 @@ class BinarySearchTree {
             if(!found) return undefined;
         }
         return current;
-    }    // ends includes    
+    }    // ends includes
+
+    breadthFirstSearch() {
+                
+        let aQueue = [];
+        let output = [];
+        
+        aQueue.push(this.root);
+        
+        while(aQueue.length != 0) {
+        
+           let aNode = aQueue.shift();
+           output.push(aNode.value);
+           if(aNode.left != null) aQueue.push(aNode.left);
+           if(aNode.right != null) aQueue.push(aNode.right);
+        } // end while
+        console.log('output is ', output);
+        return output;
+    }   //end breadthFirstSearch
 }//end BinarySearchTree
             
 
@@ -70,18 +88,4 @@ let len = anArray.length;
 for(j = 0; j < len; j++) {
     t.insert(anArray[j]);
 }
-
-let aQueue = [];
-let output = [];
-
-aQueue.push(t.root);
-
-while(aQueue.length != 0) {
-
-   let aNode = aQueue.shift();
-   output.push(aNode.value);
-   if(aNode.left != null) aQueue.push(aNode.left);
-   if(aNode.right != null) aQueue.push(aNode.right);
-} // end while
-//console.log('output is ', output);
-return output;
+ t.breadthFirstSearch();
