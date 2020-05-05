@@ -61,7 +61,7 @@ class BinarySearchTree {
         return current;
     }    // ends includes 
 
-    preorderDepthFirstSearch(){
+    preorderDFS(){
                 
         let output = [];
         function helper(node) {
@@ -72,7 +72,21 @@ class BinarySearchTree {
         helper(this.root);
         // console.log(output);
         return output;
-    }   
+    }
+
+    postorderDFS(){
+                
+        let output = [];
+        function helper(node) {
+            if(node.left) helper(node.left);
+            if(node.right) helper(node.right);
+            output.push(node.value);
+        } // end helper()
+        helper(this.root);
+        // console.log(output);
+        return output;
+    }
+
 }//end BinarySearchTree
             
 
@@ -83,19 +97,32 @@ t.insert(15);
 t.insert(3);
 t.insert(8);
 t.insert(20);
-
 //this tree is:
 //        10
 //    12      15
 //  11  13      20
-/* 
-let anArray = [8, 4, 12, 2, 6, 10];//, 14, 1, 3, 5, 7, 9, 11, 13, 15];
-let len = anArray.length;
-for(j = 0; j < len; j++) {
-    t.insert(anArray[j]);
-}
-*/
-console.log(t.preorderDepthFirstSearch());
 console.log(t);
 console.log(t.root.left);
 console.log(t.root.right);
+console.log(t.preorderDFS());
+console.log(t.postorderDFS());
+console.log('');
+
+let u = new BinarySearchTree(); 
+let anArray = [8, 4, 12, 2, 6, 10, 14, 1, 3, 5, 7, 9, 11, 13, 15];
+let len = anArray.length;
+for(j = 0; j < len; j++) {
+    u.insert(anArray[j]);
+}
+//This tree is:
+//                 8
+//         4              12
+//     2       6      10      14
+//   1   3   5   7   9  11  13  15
+console.log(u);
+console.log(u.root.left.left);
+console.log(u.root.left.right);
+console.log(u.root.right.left);
+console.log(u.root.right.right);
+console.log(u.preorderDFS(), "preorder");
+console.log(u.postorderDFS(), "postorder");
