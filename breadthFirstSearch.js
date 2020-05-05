@@ -75,7 +75,7 @@ class BinarySearchTree {
            if(aNode.left != null) aQueue.push(aNode.left);
            if(aNode.right != null) aQueue.push(aNode.right);
         } // end while
-        console.log('output is ', output);
+        //console.log('output is ', output);
         return output;
     }   //end breadthFirstSearch
 }//end BinarySearchTree
