@@ -63,26 +63,15 @@ class BinarySearchTree {
 
     preorderDepthFirstSearch(){
                 
-        // Psuedocode
-        // Create a variable to store the values of nodes visited
         let output = [];
-        // Store the root of the BST in a variable called current
-        let current = this.root;
-        // Write a helper function which accepts a node
-            function helper(aNode) {
-                // Push the value of the node to the variable that stores the values
-                output.push(aNode.value);
-                // If the node has a left property, call the helper function with the left property on the node
-                if(aNode.left) helper(aNode.left);
-                // If the node has a right property, call the helper function with the right property on the node
-                if(aNode.right) helper(aNode.left);
-            } // end helper()
-        // Invoke the helper function with the current variable
-        helper(current);
-        // Return the array of values
-       // console.log(output);
+        function helper(node) {
+            output.push(node.value);
+            if(node.left) helper(node.left);
+            if(node.right) helper(node.right);
+        } // end helper()
+        helper(this.root);
+        // console.log(output);
         return output;
-        
     }   
 }//end BinarySearchTree
             
@@ -94,6 +83,11 @@ t.insert(15);
 t.insert(3);
 t.insert(8);
 t.insert(20);
+
+//this tree is:
+//        10
+//    12      15
+//  11  13      20
 /* 
 let anArray = [8, 4, 12, 2, 6, 10];//, 14, 1, 3, 5, 7, 9, 11, 13, 15];
 let len = anArray.length;
