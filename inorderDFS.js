@@ -70,9 +70,8 @@ class BinarySearchTree {
             if(node.right) helper(node.right);
         } // end helper()
         helper(this.root);
-        // console.log(output);
         return output;
-    }
+    }    //end preorderDFS
 
     postorderDFS(){
                 
@@ -83,9 +82,20 @@ class BinarySearchTree {
             output.push(node.value);
         } // end helper()
         helper(this.root);
-        // console.log(output);
         return output;
-    }
+    }    //end postorderDFS
+
+    inorderDFS(){
+                
+        let output = [];
+        function helper(node) {
+            if(node.left) helper(node.left);
+            output.push(node.value);
+            if(node.right) helper(node.right);
+        } // end helper()
+        helper(this.root);
+        return output;
+    }    //end inorderDFS()
 
 }//end BinarySearchTree
             
@@ -104,8 +114,9 @@ t.insert(20);
 console.log(t);
 console.log(t.root.left);
 console.log(t.root.right);
-console.log(t.preorderDFS());
-console.log(t.postorderDFS());
+console.log(t.preorderDFS(), "preorder");
+console.log(t.postorderDFS(), "postorder");
+console.log(t.inorderDFS(), "inorder");
 console.log('');
 
 let u = new BinarySearchTree(); 
@@ -126,3 +137,4 @@ console.log(u.root.right.left);
 console.log(u.root.right.right);
 console.log(u.preorderDFS(), "preorder");
 console.log(u.postorderDFS(), "postorder");
+console.log(u.inorderDFS(), "inorder");
