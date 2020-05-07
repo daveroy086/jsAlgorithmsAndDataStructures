@@ -3,7 +3,7 @@ class BinaryHeap {    // This is a Max binary heap
         this.anArray = [];
     }
 
-    insert(element){
+    insert(element){    // inserts an element
     this.anArray.push(element);
     let elementIndex = this.anArray.length - 1;
     let parentIndex = Math.floor((elementIndex - 1) / 2);
@@ -13,7 +13,7 @@ class BinaryHeap {    // This is a Max binary heap
         this.anArray[elementIndex] = temp;
         elementIndex = parentIndex;
         parentIndex = Math.floor((elementIndex - 1) / 2);
-        }    // end while
+        }   // end while
         return this.anArray;
     }    // end insert()
     
