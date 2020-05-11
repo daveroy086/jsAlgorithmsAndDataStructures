@@ -3,6 +3,10 @@ class BinaryHeap {    // This is a Max binary heap
         this.anArray = [];
     }
 
+/*
+copy his code and make sure my output for each section is the same
+*/
+
     swap(arr, a, b){
         let temp = arr[a];
         arr[a] = arr[b];
@@ -38,13 +42,6 @@ class BinaryHeap {    // This is a Max binary heap
 
         while((this.anArray[parent] < this.anArray[left]) ||
                   (this.anArray[parent] < this.anArray[right])) {
-            if((parent * 2) + 1) {
-                left = (2 * parent) + 1;
-            }
-
-            if((parent * 2) + 1) {
-                right = (2 * parent) + 2;
-            }
 
             if((this.anArray[left] > this.anArray[parent]) &&
                     (this.anArray[left] > this.anArray[right])) {
@@ -57,6 +54,15 @@ class BinaryHeap {    // This is a Max binary heap
                         this.swap(this.anArray, right, parent);
                         parent = right;
             }
+
+            if((parent * 2) + 1) {
+                left = (2 * parent) + 1;
+            }
+
+            if((parent * 2) + 1) {
+                right = (2 * parent) + 2;
+            }
+
         } // end while()
         return toReturn;
     }// end remove()
@@ -64,13 +70,25 @@ class BinaryHeap {    // This is a Max binary heap
 }    // end BinaryHeap()
 
 let bh = new BinaryHeap();
-bh.insert(41);
-bh.insert(39);
-bh.insert(33);
-bh.insert(18);
-bh.insert(27);
+bh.insert(1);
+bh.insert(3);
+bh.insert(5);
+bh.insert(7);
+bh.insert(9);
+bh.insert(13);
+bh.insert(15);
+bh.insert(16);
+bh.insert(14);
 bh.insert(12);
-bh.insert(55);
+bh.insert(10);
+bh.insert(8);
+bh.insert(6);
+bh.insert(4);
+bh.insert(2);
+console.log(bh);
+bh.remove();
+console.log(bh);
+bh.remove();
 console.log(bh);
 bh.remove();
 console.log(bh);
