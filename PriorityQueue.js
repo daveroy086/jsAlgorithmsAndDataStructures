@@ -4,7 +4,14 @@ class PriorityQueue {    // This is a Min Priority Queue
     }
 
 /*
-copy his code and make sure my output for each section is the same
+// psuedocode:  
+// Write a min binary heap
+    // lower priority number means higher priority
+    // each node has a val and a priority
+    // Enqueue method accepts a val and a priority, makes a new node, and places it in the right spot
+        // based upon it's priority
+    // Dequeue method removes the root element, returns it , and rearranges the heap by priority
+
 */
 
     swap(arr, a, b){
