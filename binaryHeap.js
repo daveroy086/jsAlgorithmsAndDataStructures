@@ -74,3 +74,22 @@ bh.insert(55);
 console.log(bh);
 bh.remove();
 console.log(bh);
+
+/* his insert() code:
+    hisInsert(element) {
+    this.anArray.push(element);
+        this.bubbleUp();
+    }
+    bubbleUp(){
+        let idx = this.anArray.length - 1;
+        const element = this.anArray[idx];
+        while(idx > 0){
+        let parentIdx = Math.floor((idx - 1) / 2);
+        let parent = this.anArray[parentIdx];
+        if(element <= parent) break;
+        this.anArray[parentIdx] = element;
+        this.anArray[idx] = parent;
+        idx = parentIdx;
+        }
+    }
+*/
