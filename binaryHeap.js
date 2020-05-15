@@ -3,14 +3,16 @@ class BinaryHeap {    // This is a Max binary heap
         this.anArray = [];
     }
 
-/*
-copy his code and make sure my output for each section is the same
-*/
-
-    swap(arr, a, b){
+    swap(arr, a, b, c){
+        if(arr[a] != undefined) { // when the heap gets too small the child could be out of bounds
         let temp = arr[a];
         arr[a] = arr[b];
         arr[b] = temp;
+        } else {
+             let temp = arr[c];
+        arr[c] = arr[b];
+        arr[b] = temp;
+        }
     }
 
     insert(element){    // inserts an element
@@ -28,71 +30,54 @@ copy his code and make sure my output for each section is the same
     }    // end insert()
  
     remove() {
-
-        this.swap(this.anArray, 0, this.anArray.length - 1);
+        this.swap(this.anArray, 0, this.anArray.length - 1, 1);
         let toReturn = this.anArray.pop();
         let parent = 0;    //the parent node index
         if(this.anArray[1]) {
             var left = 1;    // left child node index
         }
-
         if(this.anArray[2]) { 
             var right = 2;    // the right child node index
         }
-
-        while((this.anArray[parent] < this.anArray[left]) ||
-                  (this.anArray[parent] < this.anArray[right])) {
-
-            if((this.anArray[left] > this.anArray[parent]) &&
-                    (this.anArray[left] > this.anArray[right])) {
-                        this.swap(this.anArray, left, parent);
-                        parent = left;                          
-            }
-
-            if((this.anArray[right] > this.anArray[parent]) &&
-                    (this.anArray[right] > this.anArray[left])) {
-                        this.swap(this.anArray, right, parent);
-                        parent = right;
-            }
-
-            if((parent * 2) + 1) {
-                left = (2 * parent) + 1;
-            }
-
-            if((parent * 2) + 1) {
-                right = (2 * parent) + 2;
-            }
-
-        } // end while()
+        if(this.anArray.length > 2){ 
+            while(
+                  (this.anArray[parent] < this.anArray[left]) ||
+                  (this.anArray[parent] < this.anArray[right])
+                 ) {
+                    if(
+                       (this.anArray[left] >= this.anArray[parent]) &&
+                       (this.anArray[left] >= this.anArray[right])
+                      ) {
+                         this.swap(this.anArray, left, parent, right);
+                         parent = left;  
+                        } else {
+                            this.swap(this.anArray, right, parent, left);
+                            parent = right;
+                        }
+                if((parent * 2) + 1) {
+                    left = (2 * parent) + 1;
+                }
+                if((parent * 2) + 2) {
+                    right = (2 * parent) + 2;
+                }
+            } // end while()
+        }// end if
         return toReturn;
     }// end remove()
     
 }    // end BinaryHeap()
 
 let bh = new BinaryHeap();
-bh.insert(1);
-bh.insert(3);
-bh.insert(5);
-bh.insert(7);
-bh.insert(9);
-bh.insert(13);
-bh.insert(15);
-bh.insert(16);
-bh.insert(14);
-bh.insert(12);
-bh.insert(10);
-bh.insert(8);
-bh.insert(6);
-bh.insert(4);
-bh.insert(2);
-console.log(bh);
-bh.remove();
-console.log(bh);
-bh.remove();
-console.log(bh);
-bh.remove();
-console.log(bh);
-
+let anotherArray = [1, 3, 5, 7, 9, 11, 13, 15, 14, 12, 10, 8, 6, 4, 2];
+for(j = 0; j < 15; j++){
+    bh.insert(anotherArray[0]);
+    anotherArray.splice(0, 1);
+    console.log("\n", bh);
+}
+for(i = 0; i < 15; i++){
+    bh.remove();
+    console.log("\n", bh);
+}
 /* his insert() code:
     hisInsert(element) {
     this.anArray.push(element);
