@@ -1,6 +1,6 @@
-class HashTable             {
+class HashTable {
     constructor(size = 53){
-        this.keyMap = newArray(size);
+        this.keyMap = new Array(size);
     }
 
     _hash(key) {
@@ -13,15 +13,23 @@ class HashTable             {
         }
         return total;
     }
+
+    //let anArray = [];    // add size?
     // pseudocode:
         // set:
-        // accepts a key / value pair
-        // hashes the key
+    set(key, value) {    // accepts a key / value pair
+        let someHash = this._hash(value);    // hashes the key
         // stores the keyvalue pair in the hash table array via seperate chaining
-
+        keyMap[someHash].push([key, value]);
+        /***************************use deleteMe to finish making this work */
+    }
         // get:
-        // acccepts a key
-        // hashes the key
-        // retrieves the key - value pair in the hash table
-        // if the key isn't found returns undefined
-}
+    get(key) {    // acccepts a key
+        let moreHash = this._hash(value);    // hashes the key
+        if(keyMap[moreHash]) {
+            return anArray[moreHash];    // retrieves the key - value pair in the hash table
+        } else {
+            return undefined;    // if the key isn't found returns undefined
+        }
+    }
+}// end HashTable
