@@ -48,7 +48,22 @@
         } else {
             return undefined;    // if the key isn't found returns undefined
         }
-    }
+    } // end get()
+
+    keys() {
+        //pseudocode
+        // loops thru the hash table array and returns an array of the keys in the table
+        // initalize an array to hold the output
+        // loop thru the array and add the first element of each array element to the outputArray
+            // if a keyMap element has multiple subelements, loop thru them also  
+    } // end keys()
+
+    values() {
+        //pseudocode
+        // loops thru the hash table array and returns an array of the values in the table
+        // ibid
+    } // end values()
+
 }// end HashTable
 
 let ht = new HashTable(17);
