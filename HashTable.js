@@ -1,12 +1,12 @@
                             class HashTable {
-    constructor(size = 17){
+    constructor(size = 53){
         this.keyMap = new Array(size);
     }
 
     _hash(key) {
         let total  = 0;
         let WEIRD_PRIME = 31;
-        console.log(key.length);
+        //console.log(key.length);
         for(let i = 0; i < Math.min(key.length, 100); i++) {
             let char = key[i];
             let value = char.charCodeAt(0) - 96;
@@ -15,7 +15,6 @@
         return total;
     }
 
-    //let anArray = [];    // add size?
     // pseudocode:
         // set:
     set(key, value) {    // accepts a key / value pair
@@ -25,22 +24,45 @@
         } else {
             this.keyMap[aHash] = [[key, value]];
         }
-
+        // he did:
+        // if(!this.keyMap[aHash]) {    //if the array location is empty
+        //     this.keyMap[aHash] = [];    // add an empty array
+        // }
+        // this.keyMap[aHash].push([key, value]);    // put your new pair in the array element
+        //his version is about ten keystrokes shorter
     }
-        // get:
+
+    // get:
     get(key) {    // accepts a key
-        let moreHash = this._hash(value);    // hashes the key
-        if(keyMap[moreHash]) {
-            return anArray[moreHash];    // retrieves the key - value pair in the hash table
+        let anotherHash = this._hash(key);    // hashes the key
+        let aVar = this.keyMap[anotherHash];
+        if(aVar) {    // if there are conflicts in keyMap[aHash] we need to search for the right one
+            if(aVar.length > 1){
+                for(let i = 0; i < this.keyMap.length; i++) {
+                    if(aVar[i][0] == key) {
+                        return aVar[i];
+                    }
+                }
+            }                        
+            return aVar;    // retrieves the key - value pair in the hash table
         } else {
             return undefined;    // if the key isn't found returns undefined
         }
     }
 }// end HashTable
 
-let ht = new HashTable();
+let ht = new HashTable(17);
+
+ht.set("maroon", "#800000");
+ht.set("yellow", "#FFFF00");
+ht.set("olive", "#808000");
+ht.set("salmon", "#FA8072");
+ht.set("lightcoral", "#F08080");
+ht.set("mediumvioletred", "#C71585");
+ht.set("plum", "DDA0DD");
+console.log(ht.get("yellow"));/* 
 ht.set("abc", "def");
 console.log(ht);
 console.log("");
 ht.set("abc", "ghi");
-console.log(ht);
+console.log(ht); */
