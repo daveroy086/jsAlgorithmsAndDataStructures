@@ -68,6 +68,15 @@
         //pseudocode
         // loops thru the hash table array and returns an array of the values in the table
         // ibid
+        let valuesArray = [];    //renamed array
+        for(let j = 0; j < this.keyMap.length; j++) {
+            if(this.keyMap[j]) {
+                for(let k = 0; k < this.keyMap[j].length; k++) {
+                    valuesArray.push(this.keyMap[j][k][1]);    // gets proper element
+                }                              
+            }
+        } // end for j
+        return valuesArray; 
     } // end values()
 
 }// end HashTable
@@ -82,7 +91,7 @@ ht.set("lightcoral", "#F08080");
 ht.set("mediumvioletred", "#C71585");
 ht.set("plum", "DDA0DD");
 //console.log(ht.get("yellow"));
-console.log("The keys are: ", ht.keys());
+console.log("The values are: ", ht.values());
 /* 
 ht.set("abc", "def");
 console.log(ht);
