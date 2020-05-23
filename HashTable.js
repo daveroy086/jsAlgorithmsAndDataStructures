@@ -52,10 +52,16 @@
 
     keys() {
         //pseudocode
-        // loops thru the hash table array and returns an array of the keys in the table
         // initalize an array to hold the output
-        // loop thru the array and add the first element of each array element to the outputArray
-            // if a keyMap element has multiple subelements, loop thru them also  
+        let keysArray = [];
+        for(let j = 0; j < this.keyMap.length; j++) {    // loops thru keyMap
+            if(this.keyMap[j]) {    // if keyMap location has an element
+                for(let k = 0; k < this.keyMap[j].length; k++) {    // loops thru keyMap[j] subarrays
+                    keysArray.push(this.keyMap[j][k][0]);
+                }                              
+            }
+        } // end for j
+        return keysArray; 
     } // end keys()
 
     values() {
@@ -75,7 +81,9 @@ ht.set("salmon", "#FA8072");
 ht.set("lightcoral", "#F08080");
 ht.set("mediumvioletred", "#C71585");
 ht.set("plum", "DDA0DD");
-console.log(ht.get("yellow"));/* 
+//console.log(ht.get("yellow"));
+console.log("The keys are: ", ht.keys());
+/* 
 ht.set("abc", "def");
 console.log(ht);
 console.log("");
