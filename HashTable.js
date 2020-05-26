@@ -1,5 +1,3 @@
-    
-//from github
 class HashTable {
     constructor(size = 53){
         this.keyMap = new Array(size);
@@ -8,7 +6,6 @@ class HashTable {
     _hash(key) {
         let total  = 0;
         let WEIRD_PRIME = 31;
-        //console.log(key.length);
         for(let i = 0; i < Math.min(key.length, 100); i++) {
             let char = key[i];
             let value = char.charCodeAt(0) - 96;
@@ -17,32 +14,21 @@ class HashTable {
         return total;
     }
 
-    // pseudocode:
-        // set:
+    //this.keyMap = ['DDA0DD','#FA8072','DDA0DD','#800000','#FFFF00','#808000','#F08080','#C71585'];
 
-
-//       this.keyMap = ['DDA0DD','#FA8072','DDA0DD','#800000','#FFFF00','#808000','#F08080','#C71585'];
-
-    set(key, value) {    // accepts a key / value pair
-        let aHash = this._hash(key);    // hashes the key
-        if(this.keyMap[aHash]){    // stores the keyvalue pair in the hash table array via seperate chaining
+    set(key, value) {
+        let aHash = this._hash(key);
+        if(this.keyMap[aHash]){
             this.keyMap[aHash].push([key, value]);
         } else {
             this.keyMap[aHash] = [[key, value]];
         }
-        // he did:
-        // if(!this.keyMap[aHash]) {    //if the array location is empty
-        //     this.keyMap[aHash] = [];    // add an empty array
-        // }
-        // this.keyMap[aHash].push([key, value]);    // put your new pair in the array element
-        //his version is about ten keystrokes shorter
     }
 
-    // get:
-    get(key) {    // accepts a key
-        let anotherHash = this._hash(key);    // hashes the key
+    get(key) {
+        let anotherHash = this._hash(key);
         let aVar = this.keyMap[anotherHash];
-        if(aVar) {    // if there are conflicts in keyMap[aHash] we need to search for the right one
+        if(aVar) {
             if(aVar.length > 1){
                 for(let i = 0; i < this.keyMap.length; i++) {
                     if(aVar[i][0] == key) {
@@ -50,19 +36,17 @@ class HashTable {
                     }
                 }
             }                        
-            return aVar;    // retrieves the key - value pair in the hash table
+            return aVar;
         } else {
-            return undefined;    // if the key isn't found returns undefined
+            return undefined;
         }
     } // end get()
 
     keys() {
-        //pseudocode
-        // initalize an array to hold the output
         let keysArray = [];
-        for(let j = 0; j < this.keyMap.length; j++) {    // loops thru keyMap
-            if(this.keyMap[j]) {    // if keyMap location has an element
-                for(let k = 0; k < this.keyMap[j].length; k++) {    // loops thru keyMap[j] subarrays
+        for(let j = 0; j < this.keyMap.length; j++) {
+            if(this.keyMap[j]) {
+                for(let k = 0; k < this.keyMap[j].length; k++) {
                     keysArray.push(this.keyMap[j][k][0]);
                 }                              
             }
@@ -71,18 +55,14 @@ class HashTable {
     } // end keys()
 
     values() {
-        //pseudocode
-        // loops thru the hash table array and returns an array of the values in the table
-        // ibid
-        let valuesArray = [];    //renamed array
+        let valuesArray = [];
         for(let j = 0; j < this.keyMap.length; j++) {
            // console.log("valuesArray is ", valuesArray);
             if(this.keyMap[j]) {
                 for(let k = 0; k < this.keyMap[j].length; k++) {
-                    if(!valuesArray.includes(this.keyMap[j][k][1])) {    //values only gets unique values
-                        valuesArray.push(this.keyMap[j][k][1]);    // gets proper element
+                    if(!valuesArray.includes(this.keyMap[j][k][1])) {
+                        valuesArray.push(this.keyMap[j][k][1]);
                     }
-    /*********go back to earlier, working code and be sure it still works then try this again */
                 }                              
             }
         } // end for j
@@ -108,4 +88,26 @@ ht.set("abc", "def");
 console.log(ht);
 console.log("");
 ht.set("abc", "ghi");
-console.log(ht); */
+console.log(ht);
+*/
+
+/*
+//values with nonworking if:
+    values() {
+        //pseudocode
+        // loops thru the hash table array and returns an array of the values in the table
+        // ibid
+        let valuesArray = [];    //renamed array
+        for(let j = 0; j < this.keyMap.length; j++) {
+            console.log("valuesArray is ", valuesArray);
+            if(this.keyMap[j]) {
+                for(let k = 0; k < this.keyMap[j].length; k++) {
+                    if(!valuesArray.includes(this.keyMap[j][k][1])) {    //values only gets unique values
+                        valuesArray.push(this.keyMap[j][k][1]);    // gets proper element
+                    }
+                }                              
+            }
+        } // end for j
+        return valuesArray; 
+    } // end values()
+*/
