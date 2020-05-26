@@ -1,4 +1,6 @@
-                            class HashTable {
+    
+//from github
+class HashTable {
     constructor(size = 53){
         this.keyMap = new Array(size);
     }
@@ -17,6 +19,10 @@
 
     // pseudocode:
         // set:
+
+
+//       this.keyMap = ['DDA0DD','#FA8072','DDA0DD','#800000','#FFFF00','#808000','#F08080','#C71585'];
+
     set(key, value) {    // accepts a key / value pair
         let aHash = this._hash(key);    // hashes the key
         if(this.keyMap[aHash]){    // stores the keyvalue pair in the hash table array via seperate chaining
@@ -70,9 +76,13 @@
         // ibid
         let valuesArray = [];    //renamed array
         for(let j = 0; j < this.keyMap.length; j++) {
+           // console.log("valuesArray is ", valuesArray);
             if(this.keyMap[j]) {
                 for(let k = 0; k < this.keyMap[j].length; k++) {
-                    valuesArray.push(this.keyMap[j][k][1]);    // gets proper element
+                    if(!valuesArray.includes(this.keyMap[j][k][1])) {    //values only gets unique values
+                        valuesArray.push(this.keyMap[j][k][1]);    // gets proper element
+                    }
+    /*********go back to earlier, working code and be sure it still works then try this again */
                 }                              
             }
         } // end for j
@@ -90,8 +100,9 @@ ht.set("salmon", "#FA8072");
 ht.set("lightcoral", "#F08080");
 ht.set("mediumvioletred", "#C71585");
 ht.set("plum", "DDA0DD");
-//console.log(ht.get("yellow"));
+console.log(ht.get("yellow"), "...get works");
 console.log("The values are: ", ht.values());
+console.log("The keys are: ", ht.keys());
 /* 
 ht.set("abc", "def");
 console.log(ht);
