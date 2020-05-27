@@ -14,14 +14,16 @@ class HashTable {
         return total;
     }
 
-    //this.keyMap = ['DDA0DD','#FA8072','DDA0DD','#800000','#FFFF00','#808000','#F08080','#C71585'];
+   printKeyMap(){
+       console.log(this.keyMap);
+   }
 
     set(key, value) {
         let aHash = this._hash(key);
         if(this.keyMap[aHash]){
-            this.keyMap[aHash].push([key, value]);
+            this.keyMap[aHash].push([key, value, aHash]);
         } else {
-            this.keyMap[aHash] = [[key, value]];
+            this.keyMap[aHash] = [[key, value, aHash]];
         }
     }
 
@@ -60,6 +62,7 @@ class HashTable {
            // console.log("valuesArray is ", valuesArray);
             if(this.keyMap[j]) {
                 for(let k = 0; k < this.keyMap[j].length; k++) {
+                    console.log("this.keyMap[j][k][1] is ", this.keyMap[j][k][1]);
                     if(!valuesArray.includes(this.keyMap[j][k][1])) {
                         valuesArray.push(this.keyMap[j][k][1]);
                     }
@@ -73,6 +76,7 @@ class HashTable {
 
 let ht = new HashTable(17);
 
+
 ht.set("maroon", "#800000");
 ht.set("yellow", "#FFFF00");
 ht.set("olive", "#808000");
@@ -80,34 +84,21 @@ ht.set("salmon", "#FA8072");
 ht.set("lightcoral", "#F08080");
 ht.set("mediumvioletred", "#C71585");
 ht.set("plum", "DDA0DD");
+
+ht.printKeyMap();
+
 console.log(ht.get("yellow"), "...get works");
 console.log("The values are: ", ht.values());
 console.log("The keys are: ", ht.keys());
-/* 
-ht.set("abc", "def");
-console.log(ht);
-console.log("");
-ht.set("abc", "ghi");
-console.log(ht);
-*/
 
-/*
-//values with nonworking if:
-    values() {
-        //pseudocode
-        // loops thru the hash table array and returns an array of the values in the table
-        // ibid
-        let valuesArray = [];    //renamed array
-        for(let j = 0; j < this.keyMap.length; j++) {
-            console.log("valuesArray is ", valuesArray);
-            if(this.keyMap[j]) {
-                for(let k = 0; k < this.keyMap[j].length; k++) {
-                    if(!valuesArray.includes(this.keyMap[j][k][1])) {    //values only gets unique values
-                        valuesArray.push(this.keyMap[j][k][1]);    // gets proper element
-                    }
-                }                              
-            }
-        } // end for j
-        return valuesArray; 
-    } // end values()
+ // this.keyMap = ['DDA0DD','#FA8072','DDA0DD','#800000','#FFFF00','#808000','#F08080','#C71585'];
+
+// this.keyMap = [ [ [ 'plum', 'DDA0DD' ] ], [ [ 'salmon', '#FA8072' ] ], [ [ 'maroon', '#800000' ], [ 'yellow', '#FFFF00' ] ], [ [ 'olive', '#808000' ] ], [ [ 'lightcoral', '#F08080' ] ], [ [ 'mediumvioletred', '#C71585' ] ] ];
+
+/* this.keyMap = [ [ [ 'plum', 'DDA0DD', 0 ] ], [], [], 
+[ [ 'salmon', '#FA8072', 3 ] ], [], [], [], [],
+[ [ 'maroon', '#800000', 8 ], [ 'yellow', '#FFFF00', 8 ] ], [], 
+[ [ 'olive', '#808000', 10 ] ], [], [],
+[ [ 'lightcoral', '#F08080', 13 ] ], [], [], 
+[ [ 'mediumvioletred', '#C71585', 16 ] ] ];
 */
