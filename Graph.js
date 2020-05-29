@@ -23,12 +23,17 @@ class Graph {    // tis wll be an undirected graph
            // if(this.adjacencyList[])
         // The function should find in the adjacencyList the key of vertex2 and push vertex1 to the array
             // if adjacencyList.key == vertex2 adjacencyList.vertex1 = vertex1
-            Object.keys(this.adjacencyList).forEach((key) => {
-                if(key == vertex1) this.adjacencyList[vertex1].push(vertex2);
-                if(key == vertex2) this.adjacencyList[vertex2].push(vertex1);
-            });
-            /**Sometimes when I write out what is wrong with my code the correct answer comes to me sooner??? */
-        // we're nor worried about error handling / invalid vertices at this time
+        this.adjacencyList[vertex1].push(vertex2);
+        this.adjacencyList[vertex2].push(vertex1);
+        // we're not worried about error handling / invalid vertices at this time
+    }
+
+    removeEdge(vertex1, vertex2) {
+        // pseudocode:
+        // The function should reasssign the key of vertex1 to be an arrray that does not contain vertex2
+        this.adjacencyList[vertex1] = this.adjacencyList[vertex1].filter(anElementOfAdjacencyList => anElementOfAdjacencyList != vertex2);
+        // The function should reasssign the key of vertex2 to be an arrray that does not contain vertex1
+        this.adjacencyList[vertex2] = this.adjacencyList[vertex2].filter(anElementOfAdjacencyList => anElementOfAdjacencyList != vertex1);
     }
 }
 
@@ -42,4 +47,11 @@ console.log("The graph is ", g);
 g.addEdge("Tokyo", "Dallas");
 console.log("The graph is ", g);
 g.addEdge("Dallas", "Aspen");
+console.log("The graph is ", g);
+
+//test removeEdge():
+console.log("The graph is ", g);
+g.removeEdge("Tokyo", "Dallas");
+console.log("The graph is ", g);
+g.removeEdge("Dallas", "Aspen");
 console.log("The graph is ", g);
