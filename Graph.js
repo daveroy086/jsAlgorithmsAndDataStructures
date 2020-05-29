@@ -2,7 +2,10 @@ class Graph {    // tis wll be an undirected graph
     constructor() {
         this.adjacencyList = {"Tokyo" : [],
                               "Dallas": [],
-                              "Aspen": []};
+                              "Aspen": [],
+                              "Atlanta": [],
+                              "LA": [],
+                              "JFK": []};
     }
 
     addVertex(vertex) {
@@ -35,6 +38,14 @@ class Graph {    // tis wll be an undirected graph
         // The function should reasssign the key of vertex2 to be an arrray that does not contain vertex1
         this.adjacencyList[vertex2] = this.adjacencyList[vertex2].filter(anElementOfAdjacencyList => anElementOfAdjacencyList != vertex1);
     }
+
+    removeVertex(v) {
+        // pseudocode:
+        // The function accepts the vertex to be removed
+        // The function should loop as long as there are any vertices in it's adjacencyList
+        // Inside of the loop call removeEdge() with the vertex we are removing and and any vertices in it's adjacencyList
+        // delete the key for that vertex from the adjacencyList 
+    }
 }
 
 let g = new Graph();
@@ -48,6 +59,7 @@ g.addEdge("Tokyo", "Dallas");
 console.log("The graph is ", g);
 g.addEdge("Dallas", "Aspen");
 console.log("The graph is ", g);
+g.
 
 //test removeEdge():
 console.log("The graph is ", g);
