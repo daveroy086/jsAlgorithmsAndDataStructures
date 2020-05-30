@@ -1,10 +1,6 @@
-class Graph {    // this is an undirected, unweughted graph
+class Graph {    // this is an undirected, unweighted graph
     constructor() {
-        this.adjacencyList = {"Tokyo" : [],
-                              "Dallas": [],
-                              "Aspen": [],
-                              "Atlanta": [],
-                              "LA": []};
+        this.adjacencyList = {};
     }
 
     addVertex(vertex) {
