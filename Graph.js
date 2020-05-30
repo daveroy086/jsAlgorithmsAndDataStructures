@@ -4,8 +4,7 @@ class Graph {    // tis wll be an undirected graph
                               "Dallas": [],
                               "Aspen": [],
                               "Atlanta": [],
-                              "LA": [],
-                              "JFK": []};
+                              "LA": [],};
     }
 
     addVertex(vertex) {
@@ -40,10 +39,16 @@ class Graph {    // tis wll be an undirected graph
     }
 
     removeVertex(v) {
+        var self = this;    //needed because of the callback in forEach
         // pseudocode:
         // The function accepts the vertex to be removed
         // The function should loop as long as there are any vertices in it's adjacencyList
-        // Inside of the loop call removeEdge() with the vertex we are removing and and any vertices in it's adjacencyList
+        // Inside of the loop call removeEdge() with the vertex we are removing and and any vertices in it's adjacencyList...useremoveEdge and forEach???
+        this.adjacencyList[v].forEach(function(anElemOfAL){
+            self.removeEdge(v, anElemOfAL);
+        });//end anonymous function)
+        delete this.adjacencyList[v];
+        // console.log(this.adjacencyList);
         // delete the key for that vertex from the adjacencyList 
     }
 }
@@ -53,13 +58,13 @@ let g = new Graph();
 // g.addVertex("Tokyo");
 // console.log(g);
 
+/*
 // test addEdge():
 console.log("The graph is ", g);
 g.addEdge("Tokyo", "Dallas");
 console.log("The graph is ", g);
 g.addEdge("Dallas", "Aspen");
 console.log("The graph is ", g);
-g.
 
 //test removeEdge():
 console.log("The graph is ", g);
@@ -67,3 +72,11 @@ g.removeEdge("Tokyo", "Dallas");
 console.log("The graph is ", g);
 g.removeEdge("Dallas", "Aspen");
 console.log("The graph is ", g);
+*/
+
+// test removeVertex():
+g.addEdge("Tokyo", "LA");
+g.addEdge("LA", "Dallas");
+g.addEdge("LA", "Aspen");
+console.log("The graph is: ", g);
+g.removeVertex("LA");
