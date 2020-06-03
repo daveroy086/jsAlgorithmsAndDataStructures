@@ -25,7 +25,7 @@ class Graph {    // this is an undirected, unweughted graph
         delete this.adjacencyList[v];
     }
 
-    recursiveDFS(start) {
+    recursiveDFT(start) {
         let that = this;
         let toReturn = [];
         let visited = {};
@@ -40,6 +40,22 @@ class Graph {    // this is an undirected, unweughted graph
         helper(start);
         return toReturn;
     }    // end recursiveDFS()
+
+    iterativeDFT(start) {
+        // pseudocode:
+        // The function should accept a staring node
+        // Create a stack to help us keep track of vertices (use a list/array)
+        // Create a list to store the end result, to be returned at the very end
+        // Create an object to store the visited vertices
+        // Add the starting vertex to the stack, and mark it visited
+        // While the stack has something in it:
+            // Pop the bnext vertex from the stack
+            // If that vertex hasn't been visited yet
+                // Mark it as visited
+                // Add it to the result list
+                // Push all of it's neighbors into the stack
+        // return the result array
+    }
 }    // end Graph
 
 let g = new Graph();
