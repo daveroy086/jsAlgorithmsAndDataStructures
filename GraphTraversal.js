@@ -42,20 +42,27 @@ class Graph {    // this is an undirected, unweughted graph
     }    // end recursiveDFS()
 
     iterativeDFT(start) {
-        // pseudocode:
-        // The function should accept a staring node
-        // Create a stack to help us keep track of vertices (use a list/array)
-        // Create a list to store the end result, to be returned at the very end
-        // Create an object to store the visited vertices
-        // Add the starting vertex to the stack, and mark it visited
-        // While the stack has something in it:
-            // Pop the bnext vertex from the stack
-            // If that vertex hasn't been visited yet
-                // Mark it as visited
-                // Add it to the result list
-                // Push all of it's neighbors into the stack
-        // return the result array
-    }
+        let stack = [];
+        let list = [];
+        let visited = {};
+        stack.push(start);
+        visited[start] = true;
+        while(stack.length != 0) {
+            let vertex = stack.pop();
+            list.push(vertex);
+            this.adjacencyList[vertex].forEach(elem => {
+                if(!visited[elem]){
+                    visited[elem] = true;
+                    stack.push(elem);
+                }
+            });
+            if(!visited[vertex]){
+                visited[vertex] = "true";
+                stack.push(this.adjcencyList[vertex]);
+            }// end if
+        }// end while
+        return list;
+    }// end iterativeDFT()
 }    // end Graph
 
 let g = new Graph();
@@ -77,4 +84,4 @@ g.addEdge("D", "F");
 g.addEdge("E", "F");
 console.log("Now, g is ", g);
 
-console.log(g.recursiveDFS("A"));//[ 'A', 'B', 'D', 'E', 'C', 'F' ]
+console.log(g.iterativeDFT("A"));//[ 'A', 'B', 'D', 'E', 'C', 'F' ]
