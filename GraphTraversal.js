@@ -63,6 +63,19 @@ class Graph {    // this is an undirected, unweughted graph
         }// end while
         return list;
     }// end iterativeDFT()
+
+    breadthFirstTraversal(vertex) {
+        // pseudocode:
+        // This function should accept a starting vertex
+        // Create a queue ( use an array), and place the starting vertex in it
+        // Create an array to store the nodes visited
+        // Create an object to store the nodes visited 
+        // Mark the starting vertex as visited
+        // Loop as long as there is anything in the queue
+        // Remove the first vertex from the queue and push it into the array that stores the nodes visited
+        // Loop over each vertex in the adjacency list for the vertex you are visiting
+        // If it is not inside the objectthat stores the nodes visited, mark uit as visited and enqueue that vertex
+    }
 }    // end Graph
 
 let g = new Graph();
