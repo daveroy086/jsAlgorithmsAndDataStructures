@@ -68,13 +68,36 @@ class Graph {    // this is an undirected, unweughted graph
         // pseudocode:
         // This function should accept a starting vertex
         // Create a queue ( use an array), and place the starting vertex in it
+        let queue = [vertex];
         // Create an array to store the nodes visited
+        let list = [];
         // Create an object to store the nodes visited 
+        let visited = {};
         // Mark the starting vertex as visited
-        // Loop as long as there is anything in the queue
-        // Remove the first vertex from the queue and push it into the array that stores the nodes visited
-        // Loop over each vertex in the adjacency list for the vertex you are visiting
-        // If it is not inside the objectthat stores the nodes visited, mark uit as visited and enqueue that vertex
+        visited[vertex] = true;
+        // Loop as long as there is anything in the queue (while)
+        while(queue.length) {
+            // Remove the first vertex from the queue and push it into the array that stores the nodes visited (list)
+            let newVertex = queue.shift();
+            list.push(newVertex);
+            // Loop over each vertex in the adjacency list for the vertex you are visiting
+            // If it is not inside the object that stores the nodes visited, mark it as visited and enqueue that vertex
+            this.adjacencyList[newVertex].forEach(e => {
+                // you can reverse the order of the output array by doing:
+                // 'this.adjacencyList[newVertex].slice().reverse().forEach(e => {'
+                // DO NOT lose this comment
+                // use this for review of the course:
+                    // https://www.freecodecamp.org/news/the-top-data-structures-you-should-know-for-your-next-coding-interview-36af0831f5e3/
+                // step thru the code for this section, at least
+                if(!visited[e]){
+                    visited[e] = true;
+                    queue.push(e);
+                }
+            });
+        } // end while
+        // Once you have finished looping, return the array of visited nodes
+        // he says this is very similar to iterativeDFT above
+        return list;
     }
 }    // end Graph
 
@@ -98,3 +121,4 @@ g.addEdge("E", "F");
 console.log("Now, g is ", g);
 
 console.log(g.iterativeDFT("A"));//[ 'A', 'B', 'D', 'E', 'C', 'F' ]
+console.log(g.breadthFirstTraversal("A"));//[ 'A', 'B', 'C', 'D', 'E', 'F' ]
