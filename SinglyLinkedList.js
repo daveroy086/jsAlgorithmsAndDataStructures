@@ -1,15 +1,15 @@
-class Node{
-    constructor(val){
-        this.val = val;
-        this.next = null;
+class Node{                  //create seperate flash cards for Node and SinglyLinkedList 
+    constructor(val){        //creates a new Node with:
+        this.val = val;      // a value of val and
+        this.next = null;    // it's next is null as it is the tail
     }
 }
 
 class SinglyLinkedList{
-    constructor(){
-        this.head = null;
-        this.tail = null;
-        this.length = 0;
+    constructor(){           // creates an empty SinglyLinkedList
+        this.head = null;    // has no nodes yet so head is null
+        this.tail = null;    // tail is null
+        this.length = 0;     // length is zero
     }
     push(val){    //add a new val to the end of the list
         let newNode = new Node(val);
@@ -130,7 +130,9 @@ class SinglyLinkedList{
             this.insert(this.get(0).val, index);
             this.remove(0);
             }//end for index
-        return ls3;
+        return ls3;//I need to test this when i make this flash card
+                   //add console.log(ls3);//I think it'll crash
+                   //should it say 'return this'? check the vid
     }//end reverse()
 
 }//end SinglyLinkedList
