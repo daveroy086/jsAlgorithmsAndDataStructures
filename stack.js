@@ -40,7 +40,7 @@ class Stack{
         return temp.value;
     }//end pop()
 
-    list() {    //list all values in DLL
+    list() {    //list all values in stack
     console.log("");
         console.log("list\n");
         let current = this.first;
