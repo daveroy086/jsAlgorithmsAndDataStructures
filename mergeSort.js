@@ -34,9 +34,9 @@ function mergeArrays(array1, array2){    //merge two sorted arrays
     while((i + j) < (len1 + len2)){
         if(array1[i] < array2[j]){
           output.push(array1[i]);
-          i++;
-          if( i == len1){
-            output = output.concat(array2.splice(j));
+          i++;    // moves the pointer instead of removing the element?...why? 
+          if( i == len1){    // if you reach the end of a1 concat the rest of a2?
+            output = output.concat(array2.splice(j));    //check the vid
             i = i + array2.slice(j).length;
             return output;}
         }else{

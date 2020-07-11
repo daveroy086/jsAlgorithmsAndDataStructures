@@ -114,7 +114,7 @@ class SinglyLinkedList{
     }
 
     remove(index){    //removes the node at an index
-        if (index < 0 || this.length < index) return false;
+        if (index < 0 || this.length < index) return undefined;
         if(index == this.length) return !!this.pop(index);
         if(index == 0) return !!this.shift(index);
         let nodeToRemove = this.get(index);
