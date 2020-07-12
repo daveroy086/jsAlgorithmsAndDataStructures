@@ -23,7 +23,7 @@ class Queue{
         }
         this.size++;
         return this.size;
-    }//end push()
+    }//end enqueue()
 
     dequeue(){    //remove the first node from the beginning of the queue
         if(!this.first) return null;
@@ -34,9 +34,9 @@ class Queue{
         this.first = this.first.next;        
         this.size--;
         return temp.value;
-    }//end pop()
+    }//end dequeue()
 
-    list() {    //list all values in DLL
+    list() {    //list all values in queue
     console.log("");
         console.log("list\n");
         let current = this.first;
@@ -48,7 +48,7 @@ class Queue{
     }//end list()
 
 
-    listNodes(){    //list all nodes in the stack
+    listNodes(){    //list all nodes in the queue
         let current = this.first;
             console.log(current);
             console.log("");
@@ -59,7 +59,7 @@ class Queue{
         return this.size;
     }//end peek()
     
-}//end Stack
+}//end Queue
 
 /* 
 // Test Stack()
