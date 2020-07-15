@@ -1,77 +1,94 @@
-/*
-Notes for exercise:
+//*
+function sortedFrequency(arr, x){
 
-sortedFrequency
-
-Given a sorted array and a number, write a function called sortedFrequency that counts the occurrences of the number in the array
-
-Time Complexity - O(log n)
-*/
-
-
-function sortedFrequency(arr,x){
-    console.log(arr);
-    console.log("arr.length is", arr.length);
-    console.log("");
-    //pseudocode:
-    //remove the ints less then the target number using divdde and conquer to get rid of large blocks(while) then iteration to remove the last few
-    if(x < arr[0] || arr[arr.length - 1] < x) {
-        console.log("-1");
-        console.log("");
-        return -1;
+    let start = 0;
+    let end = arr.length - 1;
+    let center = Math.floor(arr.length / 2);
+    if(x < arr[start] || arr[end + 1] < x) { return -1; // x is not in arr
     } else {
-        let remainderArray = [];
-    
-        while(arr[arr.length - 1] > x) {    //remove a (hopefully large) subblock of smaller numbers
-            let center = Math.floor(arr.length / 2);
-            //take the right half and add it to remainderArray
-            remainderArray = (arr.slice(center)).concat(remainderArray);
-            //make leftArray equal to the left half of arr
-            arr = arr.slice(0, center);
-            console.log("remainderArray is ", remainderArray);
-            console.log("remainderArray.length is ", remainderArray.length);
-            console.log(arr);
-            console.log("arr.length is ", arr.length);
-            console.log("");
+         //use divide and conquer to find an instance of x
+        let goAgain = true;
+        while(arr[center] != x || goAgain == true) {
+            let originalStart = start;
+            let originalCenter = center;
+            let originalEnd = end;
+            if(arr[center] < x) {    // x's are to the right
+                start = center;
+            } else {    //first x is to the left
+                end = center;
+            } // end inner if-else
+            center = Math.floor((start + end) / 2);
+            if(start == originalStart && center == originalCenter &&end == originalEnd) break;
         } // end while
-        //remove remaining smallerthan x numbers, one at a time
-        while(arr[0] < x) {
-            arr.splice(0, 1);
-        }
-    
-        //now we should have an array of ints beginning with a block of x's
-        arr = remainderArray;
-        console.log("x\'s and larger is ", arr);
-        remainderArray = [];
-        console.log("arr.length is ", arr.length);
-        //use the same divide-and-conquer/iteration
-        //method to remove the larger-then-x numbers
-        //from the right end of the array 
-        center = Math.floor(arr.length / 2);
-        while(arr[center] > x) {    //remove a (hopefully large) subblock of larger numbers
-            //take the right half and add it to remainderArray
-            //make leftArray equal to the left half of arr
-            arr = arr.slice(0, center);
-            console.log("remainderArray is ", remainderArray);
-            console.log(arr);
-            console.log("arr.length is ", arr.length);
-            console.log("");
-            center = Math.floor(arr.length / 2);
-        }// end while
-        //remove remaining smallerthan x numbers, one at a time
-        while(arr[arr.length - 1] > x) {
-            arr.splice(arr.length - 1);
-            console.log(arr);
-        }
-        console.log(arr.length);
-        console.log("");
-         return arr.length; 
-    }// end else
-    //}
-} // end sortedFrequency()
+        
+        if(arr[start] != x && arr[end] != x) {
+            return -1;}
+        if(arr[start] == x) center = start;
+        if(arr[end] == x) center = end;
+        let numberOfXs = 0;//count to the left
+        let j = center - 1;
+        while (arr[j] == x) {
+            j--; numberOfXs++;} //count to the right
+        let k = center;
+        while(arr[k] == x) {
+            k++; numberOfXs++;}
+        return numberOfXs;
+    } // end else
+} //  sortedFrequency() 
 
 //Tests:
-//sortedFrequency([1,1,2,2,2,2,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,4,5,6,7,8,9,9,9,9],2); // 4 
-sortedFrequency([1,1,2,2,2,2,3],3); // 1 
-//sortedFrequency([1,1,2,2,2,2,3],1); // 2 
-//sortedFrequency([1,1,2,2,2,2,3],4); // -1
+//it would be at the low end if it was in the array
+console.log(sortedFrequency([2, 2, 3, 3, 3, 4, 4, 4, 4], 1)); // -1
+//it's a single int at the beginning of the array 
+console.log(sortedFrequency([1, 2, 2, 3, 3, 3, 4, 4, 4, 4], 1)); // 1
+//it's multiple ints at the beginning of the array
+console.log(sortedFrequency([2, 2, 3, 3, 3, 4, 4, 4, 4], 2)); // 2 
+//it's in the center of the array
+console.log(sortedFrequency([2, 2, 3, 3, 3, 4, 4, 4, 4], 3)); // 3
+//it would be in the center if it was in the array
+console.log(sortedFrequency([2, 2, 4, 4, 4, 4], 3)); // -1
+//it's multiple ints at the end of the array
+console.log(sortedFrequency([2, 2, 4, 4, 4, 4], 4)); // 4
+//it's a single int at the end of the array
+console.log(sortedFrequency([2, 2, 3, 3, 3, 4, 4, 4, 4, 5], 1)); // -1
+//it would be in the high end if it was in the array
+console.log(sortedFrequency([2, 2, 3, 3, 3, 4, 4, 4, 4], 5)); // -1
+//*/
+
+/*  someone elses sweet code(I've edited a little):
+function sortedFrequency(arr,num){
+
+    let startIdx = 0,
+        endIdx = arr.length - 1,
+        middle = 0,
+        firstOccur = -1,
+        lastOccur = -1;
+
+    // find first occurance
+    while(startIdx <= endIdx){
+        middle = Math.floor((startIdx + endIdx) / 2);
+        if(arr[middle] === num && arr[middle - 1] !== num){ // when you land on the right one
+            firstOccur = middle;
+            break;
+        }
+        if(arr[middle] < num) startIdx = middle + 1; // rest the range to look at
+        else endIdx = middle - 1;                    // it's what I did except for the ones and it's prettier
+    }
+    if(firstOccur === -1) return -1; // never found an occurance
+
+    //reset to find last occurance
+    startIdx = 0;
+    endIdx = arr.length - 1;
+    // find last occurance
+    while(startIdx <= endIdx){
+        middle = Math.floor((startIdx + endIdx) / 2);
+        if(arr[middle] === num && arr[middle + 1] !== num){
+            lastOccur = middle;
+            break;
+        }
+        if(arr[middle] <= num) startIdx = middle + 1;
+        else endIdx = middle - 1;
+    }
+    return lastOccur - firstOccur + 1;
+} // end sortedFrequency
+/*/
