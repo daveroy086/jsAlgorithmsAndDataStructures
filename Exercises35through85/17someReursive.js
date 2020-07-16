@@ -31,7 +31,7 @@ console.log(someRecursive([4,6,8], val => val > 10)); // false
     if (arr.length == 1) {    // base case
         return arr[0] % 2 !==0 ? true : false;
     }
-    return arr[0] % 2 !== 0 someRecursive(arr.slice(1)) ? true : false;
+    return arr[0] % 2 !== 0 || someRecursive(arr.slice(1)) ? true : false;
 } // end someRecursive()
  */
 
@@ -40,7 +40,7 @@ Instructions:
 
 Write a recursive function called someRecursive which accepts an array and a callback. The function returns true if a single value in the array returns true when passed to the callback. Otherwise it returns false. */
 
-/* 
+/* simple example of a callback:
 function anotherFunction() {
     console.log("Hello", anotherVar);
 }
