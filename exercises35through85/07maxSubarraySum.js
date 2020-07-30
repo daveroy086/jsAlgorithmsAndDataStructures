@@ -1,12 +1,15 @@
 function maxSubarraySum(arr, x) {
 
     let max = -Infinity;
-    for(let i = 0; i < len - x; i++) {
-        let sum = arr.slice(i, i + x + 1).reduce;
+    let len = arr.length;
+    for(let i = 0; i < len - x + 1; i++) {
+        let subArray = arr.slice(i, i + x);
+        let sum = subArray.reduce(function(sum, each) {
+            return sum += each;
+        });
         if(sum > max) max = sum;
     }
-    return sum;
-
+    return max != -Infinity ? max : null;
 } // end maxSubarraySum
 
 console.log(maxSubarraySum([100,200,300,400], 2)); // 700
