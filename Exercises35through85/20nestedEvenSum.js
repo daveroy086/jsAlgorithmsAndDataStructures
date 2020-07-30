@@ -10,6 +10,7 @@ function nestedEvenSum (obj) {
     for(i = 0; i < objectKeys.length; i++) {
         // at each key if it is a number that is even add it to sum
         if(typeof obj[objectKeys[i]] == "number" && obj[objectKeys[i]] % 2 == 0) {
+          
             sum += obj[objectKeys[i]];
         }
         // if it is an object call nestedEvenSum on it
