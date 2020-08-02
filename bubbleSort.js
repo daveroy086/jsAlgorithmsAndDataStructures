@@ -1,21 +1,25 @@
-function bubbleSort(arr){
+function bubbleSort(arr){    // inproved over git hub version
 
     // use the bubble sort algorithm to sort an array of numbers
+    function swap() {
+        let temp = arr[i];
+        arr[i] = arr[i + 1];
+        arr[i + 1] = temp;
+    }
 
-    let aFlag = false;
-    let range = arr.length;
-    while(aFlag == false){
-        aFlag = true;
-        for(i = 0; i < range; i ++){
-            if(arr[i] > arr[i + 1]){
-                let temp = arr[i];
-                arr[i] = arr[i + 1];
-                arr[i + 1] = temp;
-                aFlag = false;
+    let goAgain = true;
+    let range = arr.length - 1;
+    while(goAgain == true) {
+        goAgain = false;
+        for(i = 0; i < range; i ++) {
+            if(arr[i] > arr[i + 1]) {
+                swap();
+                goAgain = true;
                 }
         }//end for i
         range--;
     }//end while
+
     return arr;
 
 }//end bubbleSort()
