@@ -1,23 +1,22 @@
-function bubbleSort(anotherArray){
+function bubbleSort(arr){
 
     // use the bubble sort algorithm to sort an array of numbers
 
     let aFlag = false;
-    let range = anotherArray.length;
+    let range = arr.length;
     while(aFlag == false){
         aFlag = true;
         for(i = 0; i < range; i ++){
-            if(anotherArray[i] > anotherArray[i + 1]){
-                let temp = anotherArray[i];
-                anotherArray[i] = anotherArray[i + 1];
-                anotherArray[i + 1] = temp;
+            if(arr[i] > arr[i + 1]){
+                let temp = arr[i];
+                arr[i] = arr[i + 1];
+                arr[i + 1] = temp;
                 aFlag = false;
                 }
         }//end for i
         range--;
     }//end while
-
-    return anotherArray;
+    return arr;
 
 }//end bubbleSort()
 
