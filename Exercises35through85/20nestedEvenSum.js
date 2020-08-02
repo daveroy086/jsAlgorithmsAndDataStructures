@@ -1,29 +1,17 @@
 function nestedEvenSum (obj) {
-    
-    // pseudocode:
-    // iitialize sum
-    let sum = 0;
-    // get the objects keys
-    let objectKeys = Object.keys(obj);
-    console.log(objectKeys);
-    // for loop thru the keys
-    for(i = 0; i < objectKeys.length; i++) {
-        // at each key if it is a number that is even add it to sum
-        if(typeof obj[objectKeys[i]] == "number" && obj[objectKeys[i]] % 2 == 0) {
-          
-            sum += obj[objectKeys[i]];
-        }
-        // if it is an object call nestedEvenSum on it
-        // sum = sum + recursive call
-        if(typeof obj[objectKeys[i]] == "object") {
-            let subObjectSum = 0;
-            subObjectSum = nestedEvenSum(obj[objectKeys.i]);
-            console.log("subObjectSum is ", subObjectSum);
-            return subObjectSum;
+      
+    let keys = Object.keys(obj);
+    let len = keys.length;
+    let sum = 0; // was anArray = [];
+    for(let i = 0; i < len; i++) {
+        if(typeof obj[keys[i]] == "object") {
+            sum += nestedEvenSum(obj[keys[i]]);
+        } else if(obj[keys[i]] % 2 === 0) {    // if obj[keys[i]] is even
+                    sum += obj[keys[i]];    //add it to sum
         }
     } // end for i
-    return sum;    
-}
+    return sum;
+} // end evenNestedSum
 
 // Test:
 var obj1 = {
