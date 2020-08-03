@@ -47,6 +47,8 @@ function mergeArrays(array1, array2){    //merge two sorted arrays
             j = j + array1.slice(i).length;
             return output;
 }}}}//console.log(mergeArrays([ 2, 3, 6, 7, 8], [ 0, 1, 4, 5, 9, 10, 11, 12])); 
+//check out my improved mergeArrays below
+// also his version
 
 console.log(mergeSort( [8, 4, 7, 1, 6, 3, 5, 2, 9]));
 
@@ -81,4 +83,63 @@ console.log(mergeSort( [8, 4, 7, 1, 6, 3, 5, 2, 9]));
     output = mergeArrays(firstSorted, secondSorted);
     return output;
     
+*/
+
+/*
+function mergeArrays(arr1, arr2){    //merge two sorted arrays
+
+    let output = [];
+    let i = 0;
+    let j = 0;
+    let len1 = arr1.length;
+    let len2 = arr2.length;
+
+    while((i + j) < (len1 + len2)){
+        if(arr1[i] < arr2[j]){
+          output.push(arr1[i]);
+          i++;
+          if( i == len1){
+            output = output.concat(arr2.splice(j));
+            return output;    
+          }
+        }else{
+          output.push(arr2[j]);
+          j++;
+          if( j == len2){
+            output = output.concat(arr1.slice(i));
+            return output;    
+          }
+        }//end else
+    }//end while()
+}//end mergeArrays()
+*/
+
+/*
+function merge(arr1, arr2) {
+
+    let results = [];
+    let i = 0;
+    let j = 0;
+    while(i < arr1.length && j < arr2.length) {
+      if(arr2[j] > arr1[i]) {
+        results.push(arr1[i]);
+        i++;
+      } else {
+        results.push(arr2[j]);
+        j++;
+      }
+    } // end while
+
+    while(i < arr1.length) {
+      results.push(arr1[i]);
+      i++;
+    }
+
+    while(j < arr2.length) {
+      results.push(arr2[j]);
+      j++;
+    }
+
+    return results;
+}
 */
