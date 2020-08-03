@@ -12,7 +12,6 @@ function mergeArrays(arr1, arr2){    //merge two sorted arrays
           i++;
           if( i == len1){
             output = output.concat(arr2.splice(j));
-            i = i + arr2.slice(j).length;
             return output;    
           }
         }else{
@@ -20,7 +19,6 @@ function mergeArrays(arr1, arr2){    //merge two sorted arrays
           j++;
           if( j == len2){
             output = output.concat(arr1.slice(i));
-            j = j + arr1.slice(i).length;
             return output;    
           }
         }//end else
@@ -28,7 +26,7 @@ function mergeArrays(arr1, arr2){    //merge two sorted arrays
 }//end mergeArrays()
 
 
-console.log(mergeArrays([1, 10, 50], [2, 14, 99, 100]));s
+console.log(mergeArrays([1, 10, 50], [2, 14, 99, 100]));
 /*//to test:
 function insertionSort(arr){
 
