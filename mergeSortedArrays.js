@@ -6,19 +6,19 @@ function mergeArrays(arr1, arr2){    //merge two sorted arrays
     let len1 = arr1.length;
     let len2 = arr2.length;
 
-    while((i + j) < (len1 + len2)){
+    while((i + j) < (len1 + len2)){ // until output contains all elements
         if(arr1[i] < arr2[j]){
           output.push(arr1[i]);
           i++;
-          if( i == len1){
-            output = output.concat(arr2.splice(j));
+          if( i == len1){ // if all the elements of arr1 have been added...
+            output = output.concat(arr2.splice(j)); //... add the rest of arr2
             return output;    
           }
         }else{
           output.push(arr2[j]);
           j++;
           if( j == len2){
-            output = output.concat(arr1.slice(i));
+            output = output.concat(arr1.slice(i)); // ibid
             return output;    
           }
         }//end else
@@ -26,7 +26,7 @@ function mergeArrays(arr1, arr2){    //merge two sorted arrays
 }//end mergeArrays()
 
 
-console.log(mergeArrays([1, 10, 50], [2, 14, 99, 100]));
+console.log(mergeArrays([1, 3, 10, 50], [2, 14, 99, 100]));
 /*//to test:
 function insertionSort(arr){
 
