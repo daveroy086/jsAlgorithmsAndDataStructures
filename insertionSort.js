@@ -10,7 +10,8 @@ function insertionSort(arr){
         }else{
             for(j = i; j >= 0; j--){    //loop from current location back to beginning of sorted section
                 if(((arr[j - 2] <= arr[i]) || (arr[j - 2] == undefined)) 
-                           && (arr[i] < arr[j - 1])){
+                           && (arr[i] < arr[j - 1])){//locate the two elements that the element arr[i]
+                                                     //should be between
                     arr.splice(j - 1, 0, arr[i]);
                     arr.splice(i + 1, 1);}
             }//end for j
