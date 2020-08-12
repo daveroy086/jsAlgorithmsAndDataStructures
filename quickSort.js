@@ -1,62 +1,88 @@
-function swap(anArray, a, b){
-    let temp = anArray[a];
-    anArray[a] = anArray[b];
-    anArray[b] = temp;
-}
+function pivot(arr, start = 0, end = arr.length + 1) {
 
-function pivot(arr, left, right){
+    function move(arr, b) {
+        arr.unshift(arr[b]);
+        arr.splice(b + 1, 1);
+    }
+
     let pivot = arr[start];
-    let target = 0;
-    for(i = start + 1; i < arr.length; i++){
-        if(arr[i] <= pivot){    // moves smaller values to front of array after pivot
-            swap(arr, i,  target + 1);
-            target++;
+    let pivotIndex = start;
+
+    for(let i = start + 1; i < arr.length; i++) {
+        if(pivot > arr[i]) {
+            pivotIndex++;
+            move(arr, i);
         }
-    }//end for i
+    } // end for i
+    return pivotIndex;
+} // end pivot
 
-    swap(arr, 0, target);
-    console.log("returned from pivot ", arr);
-    return target;
-}//end pivot()
+function quickSort(arr, left = 0, right = arr.length - 1){
 
-function quickSort(anotherArray, left = 0, right = anotherArray.length - 1){
-    console.log([].concat([1]));
-    console.log("parameter is ", anotherArray);
-    
-    if(anotherArray.length < 2){
-        return anotherArray;
-    }
-    if (anotherArray.length == 0){
-        return;
-    }
-    
-    //Psuedocode:
-    //  call pivot on the array
-    let index = (pivot(anotherArray, left, right));
-   
-    if (index === 0){
-        index = 1;
-    }
-    let indexArray = [index];
-    console.log("index is ", index);
-    let lesser = anotherArray.slice(0, index);
-    console.log("lesser is ", lesser);
-    let greater = anotherArray.slice(index + 1);
-    console.log("greater is ", greater);
-    let myAns = quickSort(anotherArray.slice(0, index))
-                   .concat(indexArray
-                       .concat(quickSort(anotherArray.slice(index + 1))));
-    console.log("returned is ", myAns);
-    return myAns;
-    //  that index, and the subarray to the right of that index
-    //  your base case occurs when you have a subarray of less then two elements
-    
+    if(left < right) {
+        let index = (pivot(arr, left, right));
+        quickSort(arr, left, index - 1);
+        quickSort(arr, index + 1, right);
+    } // end if
+     return arr;
 }//end quickSort()
 
-testArray = [5, 1, 2, 5, 3, 8, 1];  
-/* for(i = 0; i < 6; i++){
-    testArray.push(Math.floor(Math.random() * 10));
-} */
-//console.log("testArray is ", testArray);
+/*make this work:
+function quickSort(arr, left = 0, right = arr.length - 1){
+
+    if(left < right) {
+        let index = (pivot(arr, left, right));
+        var myAns = quickSort(arr.slice(0, index))
+                        .concat(arr[index])
+                            .concat(quickSort(arr.slice(index + 1)));
+    } // end if
+     return myAns;
+}//end quickSort()
+*/
+
+testArray = [5, 1, 2, 6, 3, 8, 1]; 
 console.log(quickSort(testArray));
-//getMedian = [arr[0], arr[Math.floor(arr.length / 2)], arr[arr.length - 1]];
+
+/*
+with comments:
+function pivot(arr, start = 0, end = arr.length + 1) {
+//    console.log("original arr is ", arr);
+
+    function move(arr, b) {
+        arr.unshift(arr[b]);    //place a copy of arr[b] at the beginning of the array
+        arr.splice(b + 1, 1);    // remove the original from it's original location
+    }
+
+    let pivot = arr[start];    // pivot has the value of the first element of the array
+    let pivotIndex = start;
+
+    for(let i = start + 1; i < arr.length; i++) {    // loop thru the array starting with the second element
+        if(pivot > arr[i]) {    // for each element less than the pivot
+            pivotIndex++;    // increment the index of the element's new home so it moves to the end of the moved items
+            move(arr, i);    // actually move them
+        }
+  //      console.log(arr);
+    } // end for i
+    //console.log(arr);
+    return pivotIndex;
+} // end pivot
+function swap(arr, a, b){
+
+testArray = [5, 1, 2, 6, 3, 8, 1]; 
+//console.log(pivot(testArray));
+
+function quickSort(arr, left = 0, right = arr.length - 1){
+
+    if(left < right) {
+        let index = (pivot(arr, left, right));
+        //since pivot has been called the pivot index has been determined and the array has been sorted to a less than pivot set of elements to the left and a greater then pivot set of values to the right
+        //sort the left half
+        quickSort(arr, left, index - 1);
+        //sort the right half
+        quickSort(arr, index + 1, right);
+    } // end if
+     return arr;
+}//end quickSort()
+
+console.log(quickSort(testArray));
+*/
