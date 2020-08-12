@@ -1,4 +1,5 @@
 /******after i get this working replace my quicksort with  one that uses my pivot below...
+
  * ...also should I try to reuse that version i had of quickSort that used one line with concat
 */
 //get his quickSort...
@@ -129,7 +130,7 @@ function pivot(arr, start = 0, end = arr.length + 1) {
     for(let i = start + 1; i < arr.length; i++) {    // loop thru the array starting with the second element
         if(pivot > arr[i]) {    // for each element less than the pivot
             pivotIndex++;    // increment the index of the element's new home so it moves to the end of the moved items
-            move(arr, 1, i);    // actually move them ...edited veersion saves a few keystrokes
+            move(arr, i);    // actually move them ...edited veersion saves a few keystrokes
         }
         console.log(arr);
     } // end for i
