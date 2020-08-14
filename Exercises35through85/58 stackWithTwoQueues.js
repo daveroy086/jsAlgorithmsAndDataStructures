@@ -1,8 +1,86 @@
-//problem 58 description:
+// two queues form a loop
+// after you add an element to one advance all elements of both until the element you just added is about to pop of????
+class Stack {
+    constructor() {
+    this.q1 = new Queue();
+    this.q2 = new Queue();
+    this.length = 0;
+    }
+    push(val) {
+        this.q1.enqueue(val);    //enqueue a node into q1
+        if(q1.length > 1) {    //if there is more than one node in q1 move them to q2
+            this.q2.enqueue(q1.pop);
+        }
+    }
+    pop() {
+        this.q1.dequeue();    //dequeue a node from q1
+        if(this.q1.length == 0) {
+            for(let i = 0; i <= this.q2.length; i++) {
+                q1.enqueue(q2.pop());    //pop all the nodes off of q2 into q1
+                    // all but one will be popped back off of q1 and onto q2
+                    // leaving only the last one on q1
+            } // end for i
+        }
+    /***** add list hhere and to push and test*/
+    } // end pop
+}
+
+// QUEUE AND NODE HAVE BEEN IMPLEMENTED FOR YOU
+
+class Node {
+    constructor(value) {
+        this.value = value;
+        this.next = null;
+    }
+}
+
+class Queue {
+    constructor() {
+        this.first = null;
+        this.last = null;
+        this.size = 0;
+    }
+    enqueue(data) {
+        var node = new Node(data);
+
+        if (!this.first) {
+            this.first = node;
+            this.last = node;
+        } else {
+            this.last.next = node;
+            this.last = node;
+        }
+
+        return ++this.size;
+    }
+
+    dequeue() {
+        if (!this.first) return null;
+
+        var temp = this.first;
+        if (this.first == this.last) {
+            this.last = null;
+        }
+        this.first = this.first.next;
+        this.size--;
+        return temp.value;
+    }
+
+    
+    list() {    //list all values in queue
+    console.log("");
+        console.log("list\n");
+        let current = this.first;
+        while(current) {
+            console.log(current.value);
+            current = current.next;
+        }
+        console.log("");
+    }//end list()
+}
 
 /*
-Stack with 2 Queues
-
+//Instructions:
 Implement a stack using two queues:
 You should implement the following functions:
 - push (returns the stack)
@@ -10,104 +88,17 @@ You should implement the following functions:
 Comment on your time complexity for push() and pop().
 */
 
-/*
-from https://cstheory.stackexchange.com/questions/2562/one-stack-two-queues/2589#2589
-this is c# T is roughly equal to a string
-
-public class Stack<T> {
-    private Queue<T> first = new Queue<T>();
-    private Queue<T> second = new Queue<T>();
-    public void Push(T value) {
-        // I'll explain what's happening in these comments. Assume we pushed
-        // integers onto the stack in increasing order: ie, we pushed 1 first,
-        // then 2, then 3 and so on.
-
-        // Suppose our queues look like this:
-        // first: in 5 6 out
-        // second: in 1 2 3 4 out
-        // Note they are both in stack order and first contains the top of
-        // the stack.
-
-        // Suppose value == 7:
-        first.Enqueue(value);
-        // first: in 7 5 6 out
-        // second: in 1 2 3 4 out
-
-        // We restore the stack order in first:
-        for (int i = 0; i < first.Count - 1; i++)
-            first.Enqueue(first.Dequeue());
-        // first.Enqueue(first.Dequeue()); is executed twice for this example, the 
-        // following happens:
-        // first: in 6 7 5 out
-        // second: in 1 2 3 4 out
-        // first: in 5 6 7 out
-        // second: in 1 2 3 4 out
-        //me i think this means that after you enqueue an element to first you dequeue/enqueue all the other elements to get back to 'stack order'
-
-        // first exeeded its capacity, so we merge first and second.
-            //i understand what we're doing but don't get why
-        if (first.Count * first.Count > second.Count) {
-            while (second.Count > 0)
-                first.Enqueue(second.Dequeue());    // me enqueue into first what you dequeue from second
-                                                   // to empty second
-            // first: in 4 5 6 7 out
-            // second: in 1 2 3 out
-            // first: in 3 4 5 6 7 out
-            // second: in 1 2 out
-            // first: in 2 3 4 5 6 7 out
-            // second: in 1 out
-            // first: in 1 2 3 4 5 6 7 out
-            // second: in out
-
-            Queue<T> temp = first; first = second; second = temp; 
-                //me swapping?? and why?? and shouldn't there be a loop or is that a c# thing
-            // first: in out
-            // second: in 1 2 3 4 5 6 7 out
-        }
-    }
-    public T Pop() {
-        if (first.Count == 0) {
-            if (second.Count > 0)
-                return second.Dequeue();
-            else
-                throw new InvalidOperationException("Empty stack.");
-        } else
-            return first.Dequeue();
-    }
-}
-*/
-
-//the beginning of the starter code which we need to change:
-/* 
-class Stack {
-    constructor() {}
-    push(val) {}
-    pop() {}
-} */
-
-/* KO's code (replaces the starter code above)
-my solution for this exercise.
-
-    class Stack {
-        constructor() {
-            this.queue = new Queue();
-        }
-        push(val) {
-            let queue = this.queue;
-            queueTwo = new Queue();
-            queueTwo.enqueue(val);
-            while(queue.size){
-                queueTwo.enqueue(queue.dequeue());
-            }       
-            this.queue = queueTwo;
-            return this;
-        } //O(n) time complexity
-     
-        pop() {
-            return this.queue.dequeue();
-        } //O(1) time complexity
-    }
- */
+// Test:
+var s = new Stack()
+s.push(10).push(20).push(30)
+s.pop() // 30
+s.pop() // 20
+s.pop() // 10
+s.pop() // null
+s.push(30).push(40).push(50)
+s.pop() // 50
+s.push(60)
+s.pop() // 60
 
 //Test:
 
@@ -121,3 +112,139 @@ s.push(30).push(40).push(50)
 s.pop() // 50
 s.push(60)
 s.pop() // 60
+
+/*
+// my Queue code:
+class Node{
+    constructor(value){
+        this.value = value;
+        this.next = null;
+    }
+}
+
+class Queue{
+    constructor(){
+        this.first = null;
+        this.last = null;
+        this.size = 0;
+    }
+
+    enqueue(value){    //add a new node to the end of the queue
+        let newNode = new Node(value);
+        if(!this.first) {
+            this.first = newNode;
+            this.last = newNode;
+        } else {
+            this.last.next = newNode;    //set the .next property of the existing last node to newNode
+            this.last = newNode;    // set the .last property of the list to newNode 
+        }
+        this.size++;
+        return this.size;
+    }//end enqueue()
+
+    dequeue(){    //remove the first node from the beginning of the queue
+        if(!this.first) return null;
+        let temp = this.first;
+        if(this.first == this.last){
+            this.last = null;
+        }
+        this.first = this.first.next;        
+        this.size--;
+        return temp.value;
+    }//end dequeue()
+
+    list() {    //list all values in queue
+    console.log("");
+        console.log("list\n");
+        let current = this.first;
+        while(current) {
+            console.log(current.value);
+            current = current.next;
+        }
+        console.log("");
+    }//end list()
+
+
+    listNodes(){    //list all nodes in the queue
+        let current = this.first;
+            console.log(current);
+            console.log("");
+    }//end listNodes()
+
+    peek() {
+        console.log('The top Node is: ', this.first);
+        return this.size;
+    }//end peek()
+    
+}//end Queue
+*/
+
+/*
+//my stack code:
+// Check the vids and see what he wants for outputs
+
+class Node{
+    constructor(value){
+        this.value = value;
+        this.next = null;
+    }
+}
+
+class Stack{
+    constructor(){
+        this.first = null;
+        this.last = null;
+        this.size = 0;
+    }
+
+    push(value){    //add a new node to the stack
+        let newNode = new Node(value);
+        if(!this.first) {
+            this.first = newNode;
+            this.last = newNode;
+        } else {
+            newNode.next = this.first;
+            this.first = newNode;
+        }
+        this.size++;
+        return this.size;
+    }//end push()
+
+    pop(){    //remove the first node from the stack
+        if(!this.first) return null;
+        let temp = this.first;
+        if(this.size == 0){
+            this.last = null;
+        }
+        let current = this.first;    //figure out how this works and how he did it with one line
+        current = current.next;
+        this.first = current;
+        this.size--;
+        return temp.value;
+    }//end pop()
+
+    list() {    //list all values in stack
+    console.log("");
+        console.log("list\n");
+        let current = this.first;
+        while(current) {
+            console.log(current.value);
+            current = current.next;
+        }
+        console.log("");
+    }//end list()
+
+
+    listNodes(){    //list all nodes in the stack
+        let current = this.first;
+            console.log(current);
+            console.log("");
+    }//end listNodes()
+
+    peek() {
+        console.log('The top Node is: ', this.first);
+        return this.size;
+    }//end peek()
+    
+}//end Stack
+*/
