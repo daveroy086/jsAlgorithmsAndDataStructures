@@ -13,14 +13,13 @@ class Graph{
 addVertex- this function should add a node to the graph and place a new key in the adjacency list with the value of an empty array.
 */
 
-/*
+
 // Test:
-    var graph = new Graph;
-     
-    graph.addVertex('A');
-    graph.addVertex('B');
-    graph.addVertex('C');
-    graph.adjacencyList['A']; // []
-    graph.adjacencyList['B']; // []
-    graph.adjacencyList['C']; // []
-*/
+var graph = new Graph();
+    
+graph.addVertex('A');
+graph.addVertex('B');
+graph.addVertex('C');
+console.log(graph.adjacencyList['A']); // []
+console.log(graph.adjacencyList['B']); // []
+console.log(graph.adjacencyList['C']); // []
