@@ -2,7 +2,8 @@ class Graph{
     constructor() {
         this.adjacencyList = {};
     }
-    addVertex(vertex) {
+    addVertex(vertex) {    /* adds the empty adjacencyList for the vertex named 'vertex'
+                              to the graph adjacencyList object */
         if(!this.adjacencyList[vertex]) this.adjacencyList[vertex] = [];     
     }
 }
