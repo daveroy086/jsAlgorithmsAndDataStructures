@@ -64,7 +64,7 @@ class Graph {    // this is an undirected, unweughted graph
         return list;
     }// end iterativeDFT()
 
-    breadthFirstTraversal(vertex) {
+    breadthFirstTraversal(vertex) {    //my BFT
         // pseudocode:
         // This function should accept a starting vertex
         // Create a queue ( use an array), and place the starting vertex in it
@@ -100,6 +100,27 @@ class Graph {    // this is an undirected, unweughted graph
         return list;
     } // end breadthFirstTravrsal
 
+    breadthFirst(start) {    // his BFT
+    const queue = [start];
+    const result = [];
+    const visited = {};
+    let currentVertex;
+    visited[start] = true;
+
+    while(queue.length) {
+        currentVertex = queue.shift();
+        result.push(currentVertex);
+
+        this.adjacencyList[currentVertex].forEach(neighbor => {
+            if(!visited[neighbor]) {
+                visited[neighbor] = true;
+                queue.push(neighbor);
+            }
+        });
+    }
+    return result;
+    }    // end breadthFirst
+
 }    // end Graph
 
 let g = new Graph();
@@ -123,3 +144,28 @@ console.log("Now, g is ", g);
 
 console.log(g.iterativeDFT("A"));//[ 'A', 'B', 'D', 'E', 'C', 'F' ]
 console.log(g.breadthFirstTraversal("A"));//[ 'A', 'B', 'C', 'D', 'E', 'F' ]
+console.log(g.breadthFirst("A"));//[ 'A', 'B', 'C', 'D', 'E', 'F' ]
+
+/* 
+//CS's breadthFirst:
+// move his breadthFirst into graph and run both to see the output is the same:
+breadthFirst(start) {
+    const queue = [start];
+    const result = [];
+    const visited = {};
+    let currentVertex;
+    visited[start] = true;
+
+    while(queue.length) {
+        currentVertex = queue.shift();
+        result.push(currentVertex);
+
+        this.adjacencyList[currentVertex].forEach(neighbor => {
+            if(!visited[neighbor]) {
+                visited[neighbor] = true;
+                queue.push(neighbor);
+            }
+        });
+    }
+
+} */
