@@ -11,6 +11,7 @@ class Graph {    // this is an undirected, unweighted graph
     addEdge(vertex1, vertex2) {    /*add each vertex to the other vertices adjacencyList*/
         this.adjacencyList[vertex1].push(vertex2);
         this.adjacencyList[vertex2].push(vertex1);
+        /*Go see the comment in Exercises35through85/73GraphAddEdge.js re testing output*/
     }    //end addEdge
 
     removeEdge(vertex1, vertex2) {    /* remove each vertex from the other vertices adjencyList*/
