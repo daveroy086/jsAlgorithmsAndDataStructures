@@ -33,9 +33,26 @@ console.log(bubbleSort(anArray));
 /*
 His original pseudocode:
 Start looping from with a varable called i the end of the array toward the beginning
-    St=tart an inner loopwith a variable called j from the beginninguntil i - 1
+    Start an inner loop with a variable called j from the beginning until i - 1
     If arr[j] is greater than arr[j + 1] , swap those two values!
-    return thre sorted array
+    return the sorted array
+
+
+function bubbleSort(arr){
+    console.log (arr);
+    for(var i = 0; i < arr.length - 1; i++){
+        for(var j = 0; j < arr.length - 1; j++){
+            console.log(arr , arr[j], arr[j + 1]);
+            if(arr[j] > arr[j + 1]){
+                var temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
+            }
+        }
+        console.log("one complete pass");
+    }
+    return arr;
+}
 
 His original code:
 function bubbleSort(arr){
@@ -52,4 +69,5 @@ function bubbleSort(arr){
 }
 
 console.log(bubbleSort([37, 45, 29, 8, 12, 88, -3]));
+//his original code without optimizations:
 */
