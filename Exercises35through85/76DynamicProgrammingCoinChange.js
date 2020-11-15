@@ -1,29 +1,35 @@
+//hey, look, i made changes
+
+
 //Instructions
 /*
 Write a function called coinChange which accepts two parameters: an array of denominations (named denom) and a value. The function should return the number of ways you can obtain the value from the given collection of denom. You can think of this as figuring out the number of ways to make change for a given value from a supply of coins.
 */
 
-//Starter code:
+// Starter code:
 function coinChange(denom, value){
 
-    //pseudocode:
+    console.log("denom is ", denom);
+    console.log("value is " + value);
+
+    // pseudocode:
     // rearranged denom cause that's how I see it
     denom.sort((a, b) => b < a);
     let combos = 0;
-        //forEach element of denom
-        denom.forEach(function(eachElement){
-            let last = denom.length - 1;
-            console.log("denom[last] is ", denom[last], " and value is ", value);
-            let howManyTimes = Math.floor(value / denom[last]);
-            for(let i = howManyTimes; i > 0; i--){
-                console.log("howManyTimes is ", howManyTimes);
-                combos += coinChange(denom.slice(1), value - (denom[last]*howManyTimes));
-            };});
-        //find the max multiple of the element in value
+        // forEach element of denom
+        let last = denom.length - 1;
+        console.log("last is ", last);
+        console.log("denom[last] is ", denom[last], " and value is ", value);
+        let howManyTimes = Math.floor(value / denom[0]);
+        for(let i = howManyTimes; i > 0; i--){
+            console.log("howManyTimes is ", howManyTimes);
+            combos += coinChange(denom.slice(1), value - (denom[last] * howManyTimes));
+        };
+        // find the max multiple of the element in value
         // loop from max value to 0
-            //newValue = value - (max * element)
+            // newValue = value - (max * element)
             // call coinChange(denom, newValue)
-        //subtract the element (and it's multiples) from the value and call coinChange on the remainder
+        // subtract the element (and it's multiples) from the value and call coinChange on the remainder
         return combos;
     
     
@@ -32,7 +38,7 @@ function coinChange(denom, value){
 
 //Tests:
 let denom = [5, 1];
-console.log(coinChange(denom, 16));//4 (eg.16 pennies, 0ne nickel and 11 pennies, two nicklesand six pennies, three nickles and 0ne penny)
+console.log(coinChange(denom, 16));//4 (eg.16 pennies, 0ne nickel and 11 pennies, two nickles and six pennies, three nickles and 0ne penny)
                                           
 /* 
 const denom = [1, 5, 10, 25];
