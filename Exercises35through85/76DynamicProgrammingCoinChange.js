@@ -1,4 +1,5 @@
 //hey, look, i made changes
+// I want to use Notepad++ for my commit messages
 
 
 //Instructions
