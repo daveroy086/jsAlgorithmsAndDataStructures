@@ -1,6 +1,15 @@
-//hey, look, i made changes
-// I want to use Notepad++ for my commit messages
+/* *************I need to stop worrying about the 4.1% I haven't
+                    solved yet and start reviewing the stuff I've completed*****************  */
 
+
+/**
+ * find the smallest value that returns an incorrect answer
+ * 
+ * then print out all the combos(put them in an array)
+ *      that each method(with and wothout memoization) makes
+ * 
+ * compare the two to see which are not being created
+ */
 
 //Instructions
 /**
@@ -13,6 +22,7 @@
 
 // Starter code:
 function coinChange(denom, value, memo = {}, callNumber = 0){
+    console.log('wrong ', memo);
 
     // pseudocode:
         // starting with the largest denomination:
@@ -23,10 +33,10 @@ function coinChange(denom, value, memo = {}, callNumber = 0){
         //repeat this process for the original value and a new denom array without the already used denomination(s)
 
 
-    console.log("");
-    console.log('callNumber is ', callNumber++);
-    console.log('denom is ', denom);
-    console.log('value is ', value);
+    // console.log("");
+    //console.log('callNumber is ', callNumber++);
+    //console.log('denom is ', denom);
+    //console.log('value is ', value);
     if(denom.length == 1) return 1;
     if(value in memo) return memo[value];
 
@@ -37,26 +47,28 @@ function coinChange(denom, value, memo = {}, callNumber = 0){
         let newDenom = denom.slice(0, denom.length - 1);
         let newValue = value - (largestCoin * i);
         memo[value] = coinChange(newDenom, newValue, memo, callNumber);
-        console.log('i is ', i, ' and howManyTimes is', howManyTimes, ' and memo is ', memo);
+       // console.log('i is ', i, ' and howManyTimes is', howManyTimes, ' and memo is ', memo);
         combos += memo[value];
-        console.log('combos is ', combos);
+      //  console.log('combos is ', combos);
     }
     return combos;
+
     
 }
 
 //Tests:
 
 const denom = [1, 5, 10, 25];
-     
-// console.log(coinChange(denom, 1)); // 1
+/* 
+console.log(coinChange(denom, 1)); // 1
 console.log(coinChange(denom, 2)); // 1
-// console.log(coinChange(denom, 5)); // 2
-// console.log(coinChange(denom, 10)); // 4
-/*console.log(coinChange(denom, 25)); // 13
+console.log(coinChange(denom, 5)); // 2
+console.log(coinChange(denom, 10)); // 4
+console.log(coinChange(denom, 25)); // 13
 console.log(coinChange(denom, 45)); // 39
+ */    // the tests above give th correct answer with the memoized version
 console.log(coinChange(denom, 100)); // 242
-console.log(coinChange(denom, 145)); // 622
+/* console.log(coinChange(denom, 145)); // 622
 console.log(coinChange(denom, 1451)); // 425663
 console.log(coinChange(denom, 14511)); // 409222339
-    // non-memoized version gives result after about 10 sec*/
+ */    // non-memoized version gives result after about 10 sec*/
