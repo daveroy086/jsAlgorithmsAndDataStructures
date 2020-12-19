@@ -86,37 +86,42 @@ You must mark nodes which are the ends of words so that the words can be reconst
     function Node(data) {
       this.data = data;
       this.isWord = false;
-      this.prefixes = 0;
-      this.children = {};
+      this.prefixes = 0;    // what is prefixes
+      this.children = {};    // an object which contains child nodes?
     }
     
     function Trie() {
-      this.root = new Node('');
+      this.root = new Node('');    // creates the root node
     }
     
-    Trie.prototype.add = function(word) {
+    Trie.prototype.add = function(word) {    // adds a word to the trie
       if(!this.root) {
         return null;
       }
-      this._addNode(this.root, word);
+      this._addNode(this.root, word);    // passes this.root and word so addNode knows where to add the word
     };
-    Trie.prototype._addNode = function(node, word) {
+
+
+    Trie.prototype._addNode = function(node, word) {    // adds a node for each letter in the word
       if(!node || !word) {
         return null;
       }
       node.prefixes++;
-      var letter = word.charAt(0);
-      var child = node.children[letter];
-      if(!child) {
-        child = new Node(letter);
+      var letter = word.charAt(0);    // gets the first letter of the word
+      var child = node.children[letter];    //  I don't know what node.children[letter] is
+      if(!child) {    //  if it doesn't exist
+        child = new Node(letter);    //  create it
         node.children[letter] = child;
       }
-      var remainder = word.substring(1);
+
+      var remainder = word.substring(1);    // marks the end of the word
       if(!remainder) {
         child.isWord = true;
       }
       this._addNode(child, remainder);
     };
+
+
     Trie.prototype.remove = function(word) {
       if(!this.root) {
         return;
@@ -150,12 +155,16 @@ You must mark nodes which are the ends of words so that the words can be reconst
         }
       }
     };
+
+
     Trie.prototype.contains = function(word) {
       if(!this.root) {
         return false;
       }
       return this._contains(this.root, word);
     };
+
+
     Trie.prototype._contains = function(node, word) {
       if(!node || !word) {
         return false;
@@ -173,6 +182,8 @@ You must mark nodes which are the ends of words so that the words can be reconst
         return false;
       }
     };
+
+
     Trie.prototype.countWords = function() {
       if(!this.root) {
         return console.log('No root node found');
@@ -192,12 +203,16 @@ You must mark nodes which are the ends of words so that the words can be reconst
       }
       return counter;
     };
+
+
     Trie.prototype.getWords = function() {
       var words = [];
       var word = '';
       this._getWords(this.root, words, words, word);
       return words;
     };
+
+
     Trie.prototype._getWords = function(node, words, word) {
       for(var child in node.children) {
         if(node.children.hasOwnProperty(child)) {
@@ -210,6 +225,8 @@ You must mark nodes which are the ends of words so that the words can be reconst
         }
       }
     };
+
+
     Trie.prototype.print = function() {
       if(!this.root) {
         return console.log('No root node found');
@@ -231,6 +248,8 @@ You must mark nodes which are the ends of words so that the words can be reconst
       }
       console.log(string.slice(0, -2).trim());
     };
+
+
     Trie.prototype.printByLevel = function() {
       if(!this.root) {
         return console.log('No root node found');
@@ -253,6 +272,8 @@ You must mark nodes which are the ends of words so that the words can be reconst
       console.log(string.trim());
     };
     
+
+    // Test:
     var trie = new Trie();
     trie.add('one');
     trie.add('two');
