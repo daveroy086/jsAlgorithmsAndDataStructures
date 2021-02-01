@@ -10,17 +10,25 @@ class BinarySearchTree {
     constructor() {
         this.root = null;
     }
+
     insert(value) {
         let newNode = new Node(value);
         if(this.root === null) {    // If no root yet
             this.root = newNode;
             return this;
         } else {    // If there is a root
-            let current = this.root;
-            while(true){    // Check value of newNode vs root
-                if(value < current.value){    // If it's less
+            let current = this.root;    // 'step into' root
+            while(true){    /* Will continue looping as you descend down from the root
+                               into the tree until you find a place for the newNode and
+                               return out of the loop from there */   
+                // Check value of newNode vs the node you're in
+                if(value == current.value) {    // if tree has value
+                    return undefined;
+                }
+
+                if(value < current.value){    // If it's less:
                     if(current.left != null){    // If current has left node
-                        current = current.left;    // ...node move to that node              
+                        current = current.left;    // ...step into that node and continue looping             
                     } else {
                         current.left = newNode;    // else add newNode as the left property
                         return this;                            
@@ -36,10 +44,6 @@ class BinarySearchTree {
                     }
                 }
 
-                if(value == current.value) {    // if tree has value
-                    return undefined;
-                }
-
             } //end while
         }//end if(this.root...
          return this;
@@ -52,12 +56,12 @@ class BinarySearchTree {
             let current = this.root;
             while(current){
 
-                if(current.value == value1) return true;
+                if(current.value == value1) return true;    // if you want to retun the node do: 'return current'
 
                 if(value1 < current.value){
                     if(current.left == null) return false;
                     if(current.left.value == value1) {
-                        return true;
+                        return true;    // if you want to return the node do: 'return current.left'
                     } else {
                         current = current.left;
                     }
@@ -66,7 +70,7 @@ class BinarySearchTree {
                 if(current.value < value1){
                     if(current.right == null) return false;
                     if(current.right.value == value1) {
-                        return true;
+                        return true;    // If you want to return the node do: 'return current.right'
                     } else {
                         current = current.right;
                     }
@@ -74,7 +78,13 @@ class BinarySearchTree {
 
             } // end while
         } // end else
-    }    // ends includes    
+    }    // ends includes
+
+    remove(value3) {
+        // pseudocode:
+        //if(this.root.value === value3)
+    }
+
 }//end BinarySearchTree
             
 
@@ -82,19 +92,23 @@ let t = new BinarySearchTree();
 
 //let anArray = [8, 4, 12, 6, 10, 14, 5, 7, 9, 11, 13, 15];//minus 1, 2, 3
 //let anArray = [8, 4, 12, 2, 10, 14, 1, 3, 9, 11, 13, 15];//minus 5, 6, 7
-//let anArray = [8, 4, 12, 2, 6, 14, 1, 3, 5, 7, 13, 15];// minus 9, 10, 11
+// let anArray = [8, 4, 12, 2, 6, 14, 1, 3, 5, 7, 13, 15];// minus 9, 10, 11
 //let anArray = [8, 4, 12, 2, 6, 10, 1, 3, 5, 7, 9, 11];// minus 13, 14, 15
 //let anArray = [8, 4, 12, 2, 6, 10, 14, 1, 3, 5, 7, 9, 11, 13, 15];
 //let anArray = [8, 4, 12, 2, 6, 10, 14, 3, 5, 7, 9, 11, 13];
 //let anArray = [8, 4, 12, 2, 6, 10, 14, 1, 3, 7, 9, 13, 15];
 //let anArray = [8, 4, 12, 2, 6, 10, 14, 1, 5, 7, 11, 13, 15];
+let anArray = [4, 2, 6, 1, 3, 5, 7];
 let len = anArray.length;
 for(j = 0; j < len; j++) {
     t.insert(anArray[j]);
 }
 
-console.log(t);
-
+// console.log(t);
+console.log(t.includes(2));
+console.log(t.includes(4));
+console.log(t.includes(6));
+/* 
 for(i = 0; i < 17; i++) {
     console.log(' i is ', i);
     if(t.includes(i)) {
@@ -103,7 +117,7 @@ for(i = 0; i < 17; i++) {
         console.log('t doesn\'t include ', i);
     }
 }
-
+ */
 /* 
 console.log('The tree is empty');
 console.log(t.includes(2));
@@ -118,7 +132,8 @@ console.log('Test for 1 is', t.includes(1));
 console.log('Test for 3 is', t.includes(3));
 console.log('Test for 4 is', t.includes(4));
 */
-/* t.insert(4);
+/*
+t.insert(4);
 t.insert(2);
 t.insert(6);
 t.insert(1);
