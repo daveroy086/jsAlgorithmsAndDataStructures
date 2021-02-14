@@ -2,7 +2,6 @@ function validAnagram(stringOne, stringTwo){
 
     //give the parameters names
     if(stringOne.length != stringTwo.length){
-        //console.log("false");
         return false;
     }
 
@@ -29,30 +28,22 @@ function validAnagram(stringOne, stringTwo){
 
     // compare them
     var keysOne = Object.keys(objectOne);
-    console.log(keysOne);
     var keysOneLength = keysOne.length;
     for(k = 0; k < keysOneLength; k++){
-        //console.log(" keysOne[k] is ", keysOne[k],
-                    ", objectOne is ", objectOne, 
-                    ", objectOne[k] is ", objectOne[keysOne[k]], 
-                    " and onjectTwo[k] is ", objectTwo[keysOne[k]]);
-
         if(!(objectTwo.hasOwnProperty(keysOne[k]) && objectOne[keysOne[k]] == objectTwo[keysOne[k]])){
-      //      console.log('false');
             return false;
         }
     }
-    //console.log('true');
     return true;
 
 }//end validAnagrams()
     //return the result
 
-/* validAnagram("", ""); */
-validAnagram("aaz", "azz");//why am i returning true
-/* validAnagram('anagram', 'nagaram');//true
-validAnagram('rat', 'car');//false
-validAnagram("awesome", "awesom");
-validAnagram("amanaplanacanalpanama", "aCanalmanplanpanama");
-validAnagram("qwerty", "qeywrt");
-validAnagram("texttwistitme", "timetwisttext"); */
+console.log(validAnagram("", ""));    // true
+console.log(validAnagram("aaz", "azz"));    // false
+console.log(validAnagram('anagram', 'nagaram'));//true
+console.log(validAnagram('rat', 'car'));    //false
+console.log(validAnagram("awesome", "awesom"));    // false
+console.log(validAnagram("amanaplanacanalpanama", "amanaplanacanalpanama"));    // true
+console.log(validAnagram("qwerty", "qeywrt"));    // true
+console.log(validAnagram("texttwistitme", "timetwisttext"));    // true
